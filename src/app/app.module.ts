@@ -13,13 +13,17 @@ import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './parts/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
+import { CarouselComponent } from './parts/carousel/carousel.component';
+import { ModalProductoComponent } from './parts/modal-producto/modal-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    CarouselComponent,
+    ModalProductoComponent
   ],
   imports: [
     BrowserModule,

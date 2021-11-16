@@ -1,58 +1,70 @@
-<div class="container">
+<div class="uk-container-expand"> 
+  <div class="">
     <div class="row">
-        <div class="col-4" *ngFor="let product of products">
-            <div class="card">
-                <div class="image">
-                    <img class="img-container" [src]="product.img" alt="" height="200px">
-                </div>
-                <div>
-                    <p class="name-container">{{product.name}}</p>
-                </div>
-                <div class="container__buttons">
-                    <!-- <button class="btn btn-primary container-fluid" style="margin-bottom: 1%;" [routerLink]="['/editp',product.id]">editar</button>
-            <button class="btn btn-primary container-fluid" (click)="delete(product.id)">eliminar</button> -->
-                    <button type="button" class="btn btn-primary container-fluid" data-bs-toggle="modal"
-                        data-bs-target="#productModal" (click)="SeleccionarProducto(product)">
-                        Ver más
-                    </button>
-                </div>
+      <div class="col-3" *ngFor="let product of products">
+        <div class="uk-card">
+          <div class="uk-card-header">
+            <div class="image">
+              <img
+                class="img-container"
+                [src]="product.img"
+                alt=""
+                style="height: 200px"
+              />
             </div>
+          </div>
+          <div class="uk-card-body">
+            <div>
+              <p>{{ product.name }}</p>
+            </div>
+          </div>
+          <div class="uk-card-footer">
+            <button
+              type="button"
+              class="uk-button uk-button-primary"
+              uk-toggle="target: #productModal"
+              (click)="SeleccionarProducto(product)"
+            >
+              Ver más
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="container justify-content-center">
-    <div class="row">
-        <div class="col">
+  <div id="productModal" uk-modal *ngIf="modalActive">
+    <div class="uk-modal-dialog">
+      <button class="uk-modal-close-default" type="button" uk-close></button>
+      <div class="uk-modal-header">
+        <h2 class="uk-modal-title">
+          {{ SelectedProduct.name }}
+        </h2>
+      </div>
+      <div class="uk-modal-body">
+        <div class="image">
+          <img class="img-container" [src]="SelectedProduct.img" alt="" />
+          <div> 
+            <h3 class="name-container">Precio</h3>
+            <p class="price-container">
+              {{ SelectedProduct.price | currency }}
+            </p>
+            <h3 class="name-container">Tamaño</h3>
+            <p class="price-container">{{ SelectedProduct.size }}</p>
+            <h3 class="name-container">Descripción</h3>
+            <p class="price-container">{{ SelectedProduct.description }}</p>
+            <p>{{ SelectedProduct.id }}</p>
+          </div>
         </div>
+      </div>
+      <div class="uk-modal-footer uk-right">
+        <button
+          class="uk-button uk-button-primary uk-modal-close"
+          type="button"
+        >
+          cerrar
+        </button>
+      </div>
     </div>
-</div>
-
-<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title name-container" id="productModalLabel">{{SelectedProduct.name}}</h5>
-            </div>
-            <div class="modal-body">
-                <div class="image">
-                    <img class="img-container" [src]="SelectedProduct.img" alt="">
-                </div>
-                <br>
-                <div>
-                    <h3 class="name-container">Precio</h3>
-                    <p class="price-container">{{SelectedProduct.price | currency}}</p>
-                    <h3 class="name-container">Tamaño</h3>
-                    <p class="price-container">{{SelectedProduct.size}}</p>
-                    <h3 class="name-container">Descripción</h3>
-                    <p class="price-container">{{SelectedProduct.description}}</p>
-                    <!--test-->
-                    <p>{{SelectedProduct.id}}</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>

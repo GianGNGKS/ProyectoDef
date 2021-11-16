@@ -14,24 +14,24 @@ export class ProductComponent implements OnInit {
   SelectedProduct: any;
 
   //modal
-  declare $:any;
+  modalActive!: boolean;
 
 
   constructor(private $db:FirestoreService) {
-
-    this.$db.getProductos().subscribe((resp => {
+   this.$db.getProductos().subscribe((resp => {
       this.products = resp;
     }))
-
-    
+    this.modalActive = false    
   }
 
   ngOnInit(): void {
+    
   }
 
   //conexión de X producto con modal
   SeleccionarProducto(product: producto){
     this.SelectedProduct =  product;
+    this.modalActive = true;
   }
   
 }

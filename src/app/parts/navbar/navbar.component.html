@@ -1,22 +1,19 @@
-<div style="background-color: #6610f2;">
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-4">
-            <!-- logo -->
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-            </a>
-
-            <!-- links -->
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a routerLink='home' class="nav-link px-3 link-light">Inicio</a></li>
-                <li><a routerLink='product' class="nav-link px-3 link-light">Catálogo</a></li>
-                <li><a routerLink='' class="nav-link px-3 link-light">Nosotros</a></li>
-                <li><a routerLink='' class="nav-link px-3 link-light">Contacto</a></li>
-            </ul>
-
-            <!-- botón admin -->
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-light">Admin</button>
-            </div>
-        </header>
-    </div>
+<div
+  uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-dark; top: 200"
+>
+  <div class="uk-position-top uk-padding-small">
+    <nav class="uk-navbar-container uk-padding-small uk-padding-remove-top uk-padding-remove-bottom" style="border-radius: 5px;" uk-navbar>
+      <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+          <li class="uk-active"><a routerLink="home" class="uk-text-large">Incio</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li class="uk-active "><a routerLink="">Preguntas Frecuentes</a></li>
+          <li class="uk-active"><a routerLink="product">Productos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </div>
