@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
 
 
   constructor(private $db:FirestoreService) {
-   this.$db.getProductos().subscribe((resp => {
+  this.$db.getProductos().subscribe((resp => {
       this.products = resp;
     }))
     this.modalActive = false    

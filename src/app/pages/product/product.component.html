@@ -1,70 +1,91 @@
-<div class="uk-container-expand"> 
-  <div class="">
-    <div class="row">
-      <div class="col-3" *ngFor="let product of products">
-        <div class="uk-card">
-          <div class="uk-card-header">
-            <div class="image">
-              <img
-                class="img-container"
-                [src]="product.img"
-                alt=""
-                style="height: 200px"
-              />
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <div>
-              <p>{{ product.name }}</p>
-            </div>
-          </div>
-          <div class="uk-card-footer">
-            <button
-              type="button"
-              class="uk-button uk-button-primary"
-              uk-toggle="target: #productModal"
-              (click)="SeleccionarProducto(product)"
-            >
+<div class="uk-container-expand">
+    <div class="">
+        <div class="row">
+            <div class="col-3" *ngFor="let product of products">
+                <div class="uk-card">
+                    <div class="uk-card-header">
+                        <div class="image">
+                            <img class="img-container" [src]="product.img" alt="" style="height: 200px" />
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <div>
+                            <p>{{ product.name }}</p>
+                        </div>
+                    </div>
+                    <div class="uk-card-footer">
+                        <button type="button" class="uk-button uk-button-primary" uk-toggle="target: #productModal" (click)="SeleccionarProducto(product)">
               Ver más
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div id="productModal" uk-modal *ngIf="modalActive">
-    <div class="uk-modal-dialog">
-      <button class="uk-modal-close-default" type="button" uk-close></button>
-      <div class="uk-modal-header">
-        <h2 class="uk-modal-title">
-          {{ SelectedProduct.name }}
-        </h2>
-      </div>
-      <div class="uk-modal-body">
-        <div class="image">
-          <img class="img-container" [src]="SelectedProduct.img" alt="" />
-          <div> 
-            <h3 class="name-container">Precio</h3>
-            <p class="price-container">
-              {{ SelectedProduct.price | currency }}
-            </p>
-            <h3 class="name-container">Tamaño</h3>
-            <p class="price-container">{{ SelectedProduct.size }}</p>
-            <h3 class="name-container">Descripción</h3>
-            <p class="price-container">{{ SelectedProduct.description }}</p>
-            <p>{{ SelectedProduct.id }}</p>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="uk-modal-footer uk-right">
-        <button
-          class="uk-button uk-button-primary uk-modal-close"
-          type="button"
-        >
+    </div>
+
+    <div id="productModal" uk-modal *ngIf="modalActive">
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">
+                    {{ SelectedProduct.name }}
+                </h2>
+            </div>
+            <div class="uk-modal-body">
+                <div class="image">
+                    <img class="img-container" [src]="SelectedProduct.img" alt="" />
+                    <div>
+                        <h3 class="name-container">Precio</h3>
+                        <p class="price-container">
+                            {{ SelectedProduct.price | currency }}
+                        </p>
+                        <h3 class="name-container">Tamaño</h3>
+                        <p class="price-container">{{ SelectedProduct.size }}</p>
+                        <h3 class="name-container">Descripción</h3>
+                        <p class="price-container">{{ SelectedProduct.description }}</p>
+                        <p>{{ SelectedProduct.id }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-modal-footer uk-right">
+                <button class="uk-button uk-button-primary uk-modal-close" type="button">
           cerrar
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+<!-- EL PROBLEMA DEL MODAL VIENE DE UIKIT-->
+<!-- 
+<button type="button" class="uk-button uk-button-primary" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
+  Ver más
+</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ SelectedProduct.name }}</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="image">
+                        <img class="img-container" [src]="SelectedProduct.img" alt="" />
+                        <div>
+                            <h3 class="name-container">Precio</h3>
+                            <p class="price-container">
+                                {{ SelectedProduct.price | currency }}
+                            </p>
+                            <h3 class="name-container">Tamaño</h3>
+                            <p class="price-container">{{ SelectedProduct.size }}</p>
+                            <h3 class="name-container">Descripción</h3>
+                            <p class="price-container">{{ SelectedProduct.description }}</p>
+                            <p>{{ SelectedProduct.id }}</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
