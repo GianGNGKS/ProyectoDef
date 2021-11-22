@@ -15,6 +15,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CarouselComponent } from './parts/carousel/carousel.component';
 import { ModalProductoComponent } from './parts/modal-producto/modal-producto.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ModalProductoComponent } from './parts/modal-producto/modal-producto.co
     HomeComponent,
     ProductComponent,
     CarouselComponent,
-    ModalProductoComponent
+    ModalProductoComponent,
+    FaqComponent,
+    AdminComponent,
+    ModalFaqComponent
   ],
   imports: [
     BrowserModule,

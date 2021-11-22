@@ -1,0 +1,60 @@
+<div class="uk-section uk-padding-remove uk-background-secondary">
+    <div class="uk-container">
+        <div class="uk-panel uk-margin-medium">
+            <h2> Administración</h2>
+        </div>
+        <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
+            <div>
+                <div class="uk-text-decoration-none uk-text-center">
+                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                        <p class="uk-text-large">Preguntas Frecuentes</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                    Configurar
+                </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a routerLink="/faq" class="uk-text-decoration-none">
+                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                        <p class="uk-text-large">Inicio</p>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a routerLink="/faq" class="uk-text-decoration-none">
+                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                        <p class="uk-text-large">Contacto</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
+            <div>
+                <a routerLink="/faq" class="uk-text-decoration-none">
+                    <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                        <p class="uk-text-large">Productos</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL FAQ-->
+<div class="modal fade" id="modalFAQ" tabindex="-1" aria-labelledby="faqLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="faqLabel">Editar preguntas frecuentes</h5>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

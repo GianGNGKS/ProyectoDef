@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+
+//firebase
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 // Observables library
 import { map } from 'rxjs/operators';
 import { Observable, pipe } from 'rxjs';
 
-
+//interfaz producto
 import { producto, IdProducto } from '../models/product.interface';
 
 @Injectable({
