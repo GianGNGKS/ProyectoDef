@@ -13,9 +13,6 @@ export class FaqComponent implements OnInit {
   preguntas!:any[]
 
   constructor(private $db:FaqService) {
-    // this.$db.getProductos().subscribe((resp => {
-    //   this.products = resp;
-    // }))
     this.$db.getPreguntas().subscribe((resp => {
       this.preguntas = resp;
     }))
