@@ -13,6 +13,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AdminComponent implements OnInit {
 
   preguntas!:any[]
+  selectedPregunta!:any
+
   formularioFAQ:FormGroup;
 
   constructor(private $db:FaqService, private fb:FormBuilder) {
@@ -39,6 +41,11 @@ export class AdminComponent implements OnInit {
         description: this.formularioFAQ.value.description
       }
       this.$db.createPregunta(pregunta);
+    }
+
+
+    SeleccionarPregunta(pregunta: pregunta){
+      this.selectedPregunta = pregunta;
     }
 
 }

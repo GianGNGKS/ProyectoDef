@@ -50,17 +50,16 @@
                 <h5 class="modal-title text-dark" id="faqLabel">Editar preguntas frecuentes</h5>
             </div>
             <div class="modal-body" uk-sortable>
-                <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom" *ngFor="let pregunta of preguntas">
-                    <p>{{pregunta.title}} | {{pregunta.id}}</p>
-                    <button class="uk-button uk-button-primary"><span uk-icon="icon: pencil; ratio: 1.2"></span></button>
-                    <button class="uk-button uk-button-primary" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"></span></button>
-
+                <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-secondary text-light" *ngFor="let pregunta of preguntas">
+                    <p>Título: {{pregunta.title}} | ID: {{pregunta.id}}</p>
+                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom"><span uk-icon="icon: pencil; ratio: 1.2"></span></button>
+                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"></span></button>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="container">
-                    <div class="row uk-margin-small-bottom"><button type="button" class="uk-button uk-button-primary uk-width-1-" data-bs-target="#modalFAQagregar" data-bs-toggle="modal">Agregar</button></div>
-                    <div class="row"><button type="button" class="uk-button uk-button-danger uk-width-1-" data-bs-dismiss="modal">Cerrar</button></div>
+                    <div class="row uk-margin-small-bottom"><button type="button" class="uk-button uk-button-primary uk-width-1-1" data-bs-target="#modalFAQagregar" data-bs-toggle="modal">Agregar</button></div>
+                    <div class="row"><button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-dismiss="modal">Cerrar</button></div>
                 </div>
             </div>
         </div>
@@ -70,19 +69,54 @@
 <!--MODAL FAQ AGREGAR-->
 <div class="modal fade" id="modalFAQagregar" tabindex="-1" aria-labelledby="faqLabelAgregar" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title text-dark" id="faqLabelAgregar">Agregar nueva pregunta</h5>
+                <h5 class="modal-title" id="faqLabelAgregar">Agregar nueva pregunta</h5>
             </div>
             <div class="modal-body">
                 <form action="" [formGroup]="formularioFAQ" (ngSubmit)="aceptarFAQ()">
-                    <label for="title" class="text-dark">Nombre</label>
-                    <input type="text" name="" id="title" class="form-control" formControlName="title" placeholder="Pregunta Nro..."><br>
-                    <label for="description" class="text-dark">Descripción</label>
-                    <input type="text" name="" id="description" class="form-control" formControlName="description" placeholder="Descripción de la pregunta..."><br>
-                    <hr>
-                    <button data-bs-dismiss="modal" class="btn btn-primary">aceptar</button>
+                    <fieldset>
+                        <legend class="uk-legend">Título</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" id="title" type="text" placeholder="Input" formControlName="title" placeholder="Pregunta Nro...">
+                        </div>
+                        <legend class="uk-legend">Descripción</legend>
+                        <div class="uk-margin">
+                            <textarea class="uk-textarea faqDesc" name="faqDescription" rows="10" placeholder="Descripción de la pregunta..." formControlName="description" id="description" maxlength="500"></textarea>
+                        </div>
+                        <hr>
+                        <button data-bs-dismiss="modal" class="uk-button uk-button-primary uk-width-1-1">aceptar</button>
+                    </fieldset>
                 </form>
+                <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FAQ EDITAR -->
+<div class="modal fade" id="modalFAQagregar" tabindex="-1" aria-labelledby="faqLabelAgregar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="faqLabelAgregar">Agregar nueva pregunta</h5>
+            </div>
+            <div class="modal-body">
+                <form action="" [formGroup]="formularioFAQ" (ngSubmit)="aceptarFAQ()">
+                    <fieldset>
+                        <legend class="uk-legend">Título</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" id="title" type="text" placeholder="Input" formControlName="title" placeholder="Pregunta Nro...">
+                        </div>
+                        <legend class="uk-legend">Descripción</legend>
+                        <div class="uk-margin">
+                            <textarea class="uk-textarea faqDesc" name="faqDescription" rows="10" placeholder="Descripción de la pregunta..." formControlName="description" id="description" maxlength="500"></textarea>
+                        </div>
+                        <hr>
+                        <button data-bs-dismiss="modal" class="uk-button uk-button-primary uk-width-1-1">aceptar</button>
+                    </fieldset>
+                </form>
+                <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1">Volver</button>
             </div>
         </div>
     </div>
