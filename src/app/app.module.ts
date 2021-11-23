@@ -18,6 +18,7 @@ import { ModalProductoComponent } from './parts/modal-producto/modal-producto.co
 import { FaqComponent } from './pages/faq/faq.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
+import { FooterComponent } from './parts/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
     ModalProductoComponent,
     FaqComponent,
     AdminComponent,
-    ModalFaqComponent
+    ModalFaqComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
