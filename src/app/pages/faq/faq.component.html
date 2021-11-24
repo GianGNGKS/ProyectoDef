@@ -1,14 +1,18 @@
-<div class="uk-section uk-section-secondary uk-padding-remove-bottom" *ngFor="let pregunta of preguntas">
-    <div class="uk-container uk-container-small">
-        <ul uk-accordion="multiple: true">
-            <li class="uk-open">
-                <a class="uk-accordion-title uk-text-decoration-none" href="#">
-                    <h2 class="uk-text-large uk-text-uppercase  uk-text-center">{{pregunta.title}}</h2>
-                </a>
-                <div class="uk-accordion-content">
-                    <p class="uk-text-break uk-text-justify uk-dropcap">{{pregunta.description}}</p>
-                </div>
-            </li>
-        </ul>
+<div uk-height-viewport="expand: true">
+    <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <div class="uk-section uk-padding-remove-bottom" *ngFor="let pregunta of preguntas">
+            <div class="uk-container uk-container-small">
+                <ul uk-accordion="multiple: true">
+                    <li class="uk-open">
+                        <a class="uk-accordion-title uk-text-decoration-none" href="#">
+                            <h2 class="uk-text-large uk-text-uppercase  uk-text-center text-dark">{{pregunta.title}}</h2>
+                        </a>
+                        <div class="uk-accordion-content">
+                            <p class="uk-text-break uk-text-justify uk-dropcap text-dark">{{pregunta.description}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
