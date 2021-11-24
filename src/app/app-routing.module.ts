@@ -5,6 +5,7 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
+import { TestComponent } from './parts/test/test.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,8 @@ const routes: Routes = [
   },
   {
     path:'*', redirectTo: 'home', pathMatch:'full'
+  },{
+    path:'test',component:TestComponent
   }
 ];
 

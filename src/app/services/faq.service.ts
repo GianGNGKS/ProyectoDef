@@ -14,7 +14,7 @@ import { IdPregunta, pregunta } from '../models/faq.interface';
 })
 export class FaqService {
 
-  private preguntaCollection: AngularFirestoreCollection<any>
+  private preguntaCollection: AngularFirestoreCollection<pregunta>
   preguntas:Observable<IdPregunta[]>
 
   constructor(private fst:AngularFirestore) {
@@ -44,7 +44,14 @@ export class FaqService {
   
     //obtiene pregunta por id
     getPregunta(id:string){
-      return this.preguntaCollection.doc(id).snapshotChanges()
+      return this.preguntaCollection.doc(id).snapshotChanges().pipe(
+        map(a => {
+          const id= a.payload.id;
+          const data= a.payload.data() as pregunta;
+          return { id,...data }
+        }
+        )
+      )
     }
     
     //actualiza pregunta por id

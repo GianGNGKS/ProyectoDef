@@ -1,46 +1,58 @@
-<div class="uk-section uk-padding-remove uk-background-secondary">
-    <div class="uk-container">
-        <div class="uk-panel uk-margin-medium">
-            <h2> Administración</h2>
-        </div>
-        <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
-            <div>
-                <div class="uk-text-decoration-none uk-text-center">
-                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
-                        <p class="uk-text-large">Preguntas Frecuentes</p>
-                        <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
-                    Configurar
-                </button>
+<div uk-height-viewport="expand: true">
+    <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove ">
+            <div class="uk-container">
+                <div class="uk-panel uk-margin-medium">
+                    <h2> Administración</h2>
+                </div>
+                <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
+                    <div>
+                        <div class="uk-text-decoration-none uk-text-center">
+                            <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                                <p class="uk-text-large">Preguntas Frecuentes</p>
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                Configurar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a routerLink="/faq" class="uk-text-decoration-none">
+                            <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                                <p class="uk-text-large">Inicio</p>
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                    Configurar
+                                    </button>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a routerLink="/faq" class="uk-text-decoration-none">
+                            <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
+                                <p class="uk-text-large">Contacto</p>
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                    Configurar
+                                    </button>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div>
-                <a routerLink="/faq" class="uk-text-decoration-none">
-                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
-                        <p class="uk-text-large">Inicio</p>
+                <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
+                    <div>
+                        <a routerLink="/faq" class="uk-text-decoration-none">
+                            <div class="uk-card uk-card-default uk-card-body uk-text-center">
+                                <p class="uk-text-large">Productos</p>
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                    Configurar
+                                    </button>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div>
-                <a routerLink="/faq" class="uk-text-decoration-none">
-                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-height-small uk-card-hover">
-                        <p class="uk-text-large">Contacto</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="uk-grid-match uk-child-width-expand@s" uk-grid>
-            <div>
-                <a routerLink="/faq" class="uk-text-decoration-none">
-                    <div class="uk-card uk-card-default uk-card-body uk-text-center">
-                        <p class="uk-text-large">Productos</p>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!--MODAL FAQ-->
 <div class="modal fade" id="modalFAQ" tabindex="-1" aria-labelledby="faqLabel" aria-hidden="true">
@@ -52,7 +64,7 @@
             <div class="modal-body" uk-sortable>
                 <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-secondary text-light" *ngFor="let pregunta of preguntas">
                     <p>Título: {{pregunta.title}} | ID: {{pregunta.id}}</p>
-                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom"><span uk-icon="icon: pencil; ratio: 1.2"></span></button>
+                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.2"></span></button>
                     <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"></span></button>
                 </div>
             </div>
@@ -69,7 +81,7 @@
 <!--MODAL FAQ AGREGAR-->
 <div class="modal fade" id="modalFAQagregar" tabindex="-1" aria-labelledby="faqLabelAgregar" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-        <div class="modal-content bg-dark">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="faqLabelAgregar">Agregar nueva pregunta</h5>
             </div>
@@ -95,18 +107,18 @@
 </div>
 
 <!-- MODAL FAQ EDITAR -->
-<div class="modal fade" id="modalFAQagregar" tabindex="-1" aria-labelledby="faqLabelAgregar" aria-hidden="true">
+<div class="modal fade" id="modalFAQeditar" tabindex="-1" aria-labelledby="faqLabeleditar" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-        <div class="modal-content bg-dark">
+        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="faqLabelAgregar">Agregar nueva pregunta</h5>
+                <h5 class="modal-title" id="faqLabeleditar">Editar pregunta</h5>
             </div>
             <div class="modal-body">
-                <form action="" [formGroup]="formularioFAQ" (ngSubmit)="aceptarFAQ()">
+                <form action="" [formGroup]="formularioFAQedit" (ngSubmit)="updateFAQ()">
                     <fieldset>
                         <legend class="uk-legend">Título</legend>
                         <div class="uk-margin">
-                            <input class="uk-input" id="title" type="text" placeholder="Input" formControlName="title" placeholder="Pregunta Nro...">
+                            <input class="uk-input" id="title" type="text" formControlName="title" placeholder="x">
                         </div>
                         <legend class="uk-legend">Descripción</legend>
                         <div class="uk-margin">
@@ -121,3 +133,4 @@
         </div>
     </div>
 </div>
+<!--  -->

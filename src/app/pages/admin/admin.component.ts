@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { pregunta } from 'src/app/models/faq.interface';
+import { pregunta, IdPregunta } from 'src/app/models/faq.interface';
 import { FaqService } from 'src/app/services/faq.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -12,29 +12,38 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
-  preguntas!:any[]
-  selectedPregunta!:any
+  //PREGUNTAS
+  preguntas!:any[] //ARREGLO PREGUNTAS
+  formularioFAQ:FormGroup; //FORMULARIO PREGUNTAS
+  formularioFAQedit:FormGroup; //FORMULARIO PREGUNTAS EDITAR
 
-  formularioFAQ:FormGroup;
+  idpregunta!:string
 
   constructor(private $db:FaqService, private fb:FormBuilder) {
+    
+    //PREGUNTAS
     this.$db.getPreguntas().subscribe((resp => {
       this.preguntas = resp;
     }))
-
     this.formularioFAQ = this.fb.group({
       title:[''],
       description:['']
     })
+
+    this.formularioFAQedit = this.fb.group({
+      title:[''],
+      description:['']
+    })
+
+    //PRODUCTOS
   }
 
   ngOnInit(): void {
   }
-
+    //AGREGAR, EDITAR Y ELIMINAR PREGUNTAS
     deleteFAQ(id:string){
       this.$db.deletePregunta(id);
     }
-
     aceptarFAQ(){
       const pregunta:pregunta = {
         title: this.formularioFAQ.value.title,
@@ -43,9 +52,22 @@ export class AdminComponent implements OnInit {
       this.$db.createPregunta(pregunta);
     }
 
-
-    SeleccionarPregunta(pregunta: pregunta){
-      this.selectedPregunta = pregunta;
+    selectPregunta(id:string) {
+      this.idpregunta= id;
+      this.$db.getPregunta(id).subscribe(pregunta => {
+        this.formularioFAQedit.patchValue({
+          title: pregunta.title,
+          description: pregunta.description
+        })
+      })
+      console.log(this.idpregunta);
     }
 
+    updateFAQ() {
+      const pregunta:pregunta = {
+        title: this.formularioFAQedit.value.title,
+        description: this.formularioFAQedit.value.description
+      }
+      this.$db.updatePregunta(this.idpregunta, pregunta);
+    }
 }

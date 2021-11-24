@@ -19,6 +19,7 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
 import { FooterComponent } from './parts/footer/footer.component';
+import { TestComponent } from './parts/test/test.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FooterComponent } from './parts/footer/footer.component';
     FaqComponent,
     AdminComponent,
     ModalFaqComponent,
-    FooterComponent
+    FooterComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
