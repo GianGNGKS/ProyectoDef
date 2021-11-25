@@ -5,6 +5,7 @@ export interface IdProducto extends producto {
 export interface producto {
     name: string,
     price: number,
+    size: string,
     img: string,
     description: string
 }
