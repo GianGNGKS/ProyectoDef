@@ -30,7 +30,6 @@ export class FirestoreService {
           name: a.payload.doc.data().name,
           price: a.payload.doc.data().price,
           img: a.payload.doc.data().img,
-          size: a.payload.doc.data().size,
           description: a.payload.doc.data().description
         }
         return producto
@@ -50,9 +49,15 @@ export class FirestoreService {
 
   //obtiene producto por id
   getProducto(id:string){
-    return this.productCollection.doc(id).snapshotChanges()
+    return this.productCollection.doc(id).snapshotChanges().pipe(
+      map(a => {
+        const id = a.payload.id;
+        const data = a.payload.data() as producto;
+        return { id, ...data}
+      })
+    )
   }
-  
+
   //actualiza producto por id
   updateProducto(id:string, data:producto){
     return this.productCollection.doc(id).update(data)
