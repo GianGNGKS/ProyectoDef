@@ -47,7 +47,7 @@
                             <div class="uk-card uk-card-default uk-card-hover uk-card-body">
                                 <p class="uk-text-large">Productos</p>
                                 <div class="uk-divider-icon"></div>
-                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalPRODUCTOS">
                                     Configurar
                                 </button>
                             </div>
@@ -67,54 +67,70 @@
         </div>
 
 
+        <!-- MODALES DE FAQ -->
 
-        <!--MODAL FAQ-->
+        <!-- MODAL FAQ GENERAL -->
         <div class="modal fade" id="modalFAQ" tabindex="-1" aria-labelledby="faqLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="faqLabel">Editar preguntas frecuentes</h5>
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="faqLabel">Editar preguntas frecuentes</h3>
                     </div>
-                    <div class="modal-body" uk-sortable>
-                        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-secondary text-light" *ngFor="let pregunta of preguntas">
-                            <p>Título: {{pregunta.title}} | ID: {{pregunta.id}}</p>
-                            <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.2"></span></button>
-                            <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"></span></button>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-danger text-light" style="--bs-bg-opacity: .7" *ngFor="let pregunta of preguntas">
+                            <!-- variable de titulo -->
+                            <p class="uk-text-large uk-text-capitalize"><span class="uk-text-bold">Título:</span> {{pregunta.title}}</p>
+                            <!-- llama a modal agregar y lleva id de objeto -->
+                            <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.2" class="text-light"></span></button>
+                            <!-- elimina objerto por id -->
+                            <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2" class="text-light"></span></button>
                         </div>
                     </div>
+                    <!-- MODAL CERRAR Y AGREGAR -->
                     <div class="modal-footer">
                         <div class="container">
-                            <div class="row uk-margin-small-bottom"><button type="button" class="uk-button uk-button-primary uk-width-1-1" data-bs-target="#modalFAQagregar" data-bs-toggle="modal">Agregar</button></div>
-                            <div class="row"><button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-dismiss="modal">Cerrar</button></div>
+                            <div class="row uk-margin-small-bottom">
+                                <!-- LLAMA A MODAL AGREGAR -->
+                                <button type="button" class="uk-button btn-danger uk-width-1-1" data-bs-target="#modalFAQagregar" data-bs-toggle="modal" style="--bs-bg-opacity: .7">Agregar</button>
+                            </div>
+                            <div class="row">
+                                <!-- CIERRA MODAL -->
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--MODAL FAQ AGREGAR-->
+        <!-- MODAL FAQ AGREGAR -->
         <div class="modal fade" id="modalFAQagregar" tabindex="-1" aria-labelledby="faqLabelAgregar" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="faqLabelAgregar">Agregar nueva pregunta</h5>
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="faqLabelAgregar">Agregar nueva pregunta</h3>
                     </div>
+                    <!-- MODAL CARDS POR OBJETO-->
                     <div class="modal-body">
                         <form action="" [formGroup]="formularioFAQ" (ngSubmit)="aceptarFAQ()">
                             <fieldset>
-                                <legend class="uk-legend">Título</legend>
+                                <legend class="uk-legend text-dark uk-text-large">Título</legend>
                                 <div class="uk-margin">
                                     <input class="uk-input" id="title" type="text" placeholder="Input" formControlName="title" placeholder="Pregunta Nro...">
                                 </div>
-                                <legend class="uk-legend">Descripción</legend>
+                                <legend class="uk-legend text-dark">Descripción</legend>
                                 <div class="uk-margin">
                                     <textarea class="uk-textarea faqDesc" name="faqDescription" rows="10" placeholder="Descripción de la pregunta..." formControlName="description" id="description" maxlength="2000"></textarea>
                                 </div>
                                 <hr>
-                                <button data-bs-dismiss="modal" class="uk-button uk-button-primary uk-width-1-1">aceptar</button>
+                                <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
                             </fieldset>
                         </form>
-                        <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1">Volver</button>
+                        <!-- VUELVE A MODAL GENERAL -->
+                        <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
                     </div>
                 </div>
             </div>
@@ -122,29 +138,198 @@
 
         <!-- MODAL FAQ EDITAR -->
         <div class="modal fade" id="modalFAQeditar" tabindex="-1" aria-labelledby="faqLabeleditar" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="faqLabeleditar">Editar pregunta</h5>
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="faqLabeleditar">Editar pregunta</h3>
                     </div>
+                    <!-- MODAL OBJETO SELECCIONADO POR ID-->
                     <div class="modal-body">
                         <form action="" [formGroup]="formularioFAQedit" (ngSubmit)="updateFAQ()">
                             <fieldset>
-                                <legend class="uk-legend">Título</legend>
+                                <legend class="uk-legend text-dark">Título</legend>
                                 <div class="uk-margin">
-                                    <input class="uk-input" id="title" type="text" formControlName="title" placeholder="x">
+                                    <input class="uk-input" id="title" type="text" formControlName="title" placeholder="">
                                 </div>
-                                <legend class="uk-legend">Descripción</legend>
+                                <legend class="uk-legend text-dark">Descripción</legend>
                                 <div class="uk-margin">
                                     <textarea class="uk-textarea faqDesc" name="faqDescription" rows="10" placeholder="Descripción de la pregunta..." formControlName="description" id="description" maxlength="500"></textarea>
                                 </div>
-                                <hr>
-                                <button data-bs-dismiss="modal" class="uk-button uk-button-primary uk-width-1-1">aceptar</button>
+                                <div class="uk-divider-icon"></div>
+                                <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
                             </fieldset>
                         </form>
-                        <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1">Volver</button>
+                        <!-- VUELVE A MODAL GENERAL -->
+                        <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!--  -->
+        <!-- MODALES DE FAQ -->
+
+
+
+
+        <!-- MODALES DE PRODUCTOS-->
+        <!-- MODAL PRODUCTOS GENERAL -->
+        <div class="modal fade" id="modalPRODUCTOS" tabindex="-1" aria-labelledby="productoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="productoLabel">Editar productos</h3>
+                    </div>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <div class="uk-overflow-auto">
+                            <table class="uk-table uk-table-divider uk-table-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="uk-table-shrink"></th>
+                                        <th>Nombre</th>
+                                        <th>ID</th>
+                                        <th class="uk-width-1-4 uk-width-small">Modificar</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let producto of productos">
+                                        <td class="uk-flex uk-flex-center uk-flex-middle">
+                                            <img src="{{producto.img}}" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:100px; width:100px;">
+                                        </td>
+                                        <td class="text-dark uk-text-nowrap">
+                                            <div class="uk-flex uk-flex-center uk-flex-middle">
+                                                <p>{{producto.name}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="text-dark uk-text-nowrap">
+                                            <div class="uk-flex uk-flex-center uk-flex-middle">
+                                                <p>{{producto.price | currency:'ARS':'$'}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)"><span uk-icon="icon: pencil; ratio: 1.2 " class="text-dark "></span></button>
+                                            <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) "><span uk-icon="icon: close; ratio: 1.2 " class="text-dark "></span></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- MODAL CERRAR Y AGREGAR -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row uk-margin-small-bottom">
+                                <!-- LLAMA A MODAL AGREGAR -->
+                                <button type="button" class="uk-button btn-danger uk-width-1-1" data-bs-target="#modalPRODUCTOSagregar" data-bs-toggle="modal" style="--bs-bg-opacity: .7">Agregar</button>
+                            </div>
+                            <div class="row">
+                                <!-- CIERRA MODAL -->
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRODUCTO AGREGAR -->
+        <div class="modal fade" id="modalPRODUCTOSagregar" tabindex="-1" aria-labelledby="productoLabelAgregar" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="productoLabelAgregar">Agregar nuevo producto</h3>
+                    </div>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <form action="" [formGroup]="formularioProducto" (ngSubmit)="aceptarPRODUCTO()">
+                            <fieldset>
+                                <div class="uk-grid uk-grid-column-remove uk-grid-divider" uk-grid>
+                                    <div class="uk-width-expand@m">
+                                        <legend class="uk-legend text-dark uk-text-large">Nombre</legend>
+                                        <div class="uk-margin">
+                                            <input class="uk-input" id="title" type="text" formControlName="name" placeholder="Nombre del producto">
+                                        </div>
+                                        <legend class="uk-legend text-dark">Precio</legend>
+                                        <div class="uk-margin">
+                                            <input class="uk-input" id="title" type="number" formControlName="name" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3@m bg-dangeruk-padding-remove">
+                                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                                            <img src="https://getuikit.com/docs/images/light.jpg" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:175px; width: 175px;">
+                                        </div>
+                                        <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal">
+                                            <button class="uk-button uk-button-danger rounded">Subir imagen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <legend class="uk-legend text-dark">Descripción del producto</legend>
+                                    <div class="uk-margin">
+                                        <textarea class="uk-textarea faqDesc" rows="10" placeholder="Descripción del producto..." formControlName="description" id="description" maxlength="2000"></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                            </fieldset>
+                        </form>
+                        <!-- VUELVE A MODAL GENERAL -->
+                        <button data-bs-toggle="modal" data-bs-target="#modalPRODUCTOS" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRODUCTO EDITAR -->
+        <div class="modal fade" id="modalPRODUCTOSeditar" tabindex="-1" aria-labelledby="productoLabelEditar" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="productoLabelEditar">Editar producto</h3>
+                    </div>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <form action="" [formGroup]="formularioProductoedit" (ngSubmit)="updatePRODUCTO()">
+                            <fieldset>
+                                <div class="uk-grid uk-grid-column-remove uk-grid-divider" uk-grid>
+                                    <div class="uk-width-expand@m">
+                                        <legend class="uk-legend text-dark uk-text-large">Nombre</legend>
+                                        <div class="uk-margin">
+                                            <input class="uk-input" id="title" type="text" formControlName="name" placeholder="Nombre del producto">
+                                        </div>
+                                        <legend class="uk-legend text-dark">Precio</legend>
+                                        <div class="uk-margin">
+                                            <input class="uk-input" id="title" type="number" formControlName="price" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-3@m bg-dangeruk-padding-remove">
+                                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                                            <img src="https://getuikit.com/docs/images/light.jpg" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:175px; width: 175px;">
+                                        </div>
+                                        <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal">
+                                            <button class="uk-button uk-button-danger rounded">Subir imagen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <legend class="uk-legend text-dark">Descripción del producto</legend>
+                                    <div class="uk-margin">
+                                        <textarea class="uk-textarea faqDesc" rows="10" placeholder="Descripción del producto..." formControlName="description" maxlength="2000"></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                            </fieldset>
+                        </form>
+                        <!-- VUELVE A MODAL GENERAL -->
+                        <button data-bs-toggle="modal" data-bs-target="#modalPRODUCTOS" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODALES DE PRODUCTOS -->
