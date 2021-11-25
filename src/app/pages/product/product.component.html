@@ -1,37 +1,36 @@
-<div uk-height-viewport="expand: true" tabindex="4">
+<div uk-height-viewport="expand: true">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove ">
-            <div class="uk-container text-dark">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam exercitationem iusto aperiam at, sapiente aspernatur itaque ex impedit amet deleniti in excepturi dignissimos similique et, velit ab! Similique, libero ullam!</p>
-                <div uk-height-viewport="expand: true">
-                    <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-                        <div class="uk-container-expand">
-                            <div class="">
-                                <div class="row">
-                                    <div class="col-3" *ngFor="let product of products">
-                                        <div class="uk-card">
-                                            <div class="uk-card-header">
-                                                <div class="image">
-                                                    <img class="img-container" [src]="product.img" alt="" style="height: 200px" />
-                                                </div>
-                                            </div>
-                                            <div class="uk-card-body">
-                                                <div>
-                                                    <p>{{ product.name }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="uk-card-footer">
-                                                <button type="button" class="uk-button uk-button-primary" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
-                                                Ver más
-                                                </button>
-                                            </div>
-                                        </div>
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap">
+            <div class="uk-container">
+                <h1 class="uk-heading-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-danger text-light bg-gradient" style="--bs-bg-opacity: .85; letter-spacing: 5px">
+                    Nuestros Productos
+                </h1>
+            </div>
+            <div class="uk-divider-icon"></div>
+            <div class="uk-container">
+                <div class="">
+                    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-grid-match" uk-grid>
+                        <div *ngFor="let product of products">
+                            <div class="uk-card uk-card-default uk-card-hover">
+                                <div class=" uk-card-body uk-padding-bottom">
+                                    <div>
+                                        <h5>{{product.name}}</h5>
+                                        <h6>{{product.price | currency:'ARS':'$'}}</h6>
+                                    </div>
+                                    <div class="uk-margin-small-bottom">
+                                        <img class="img-container hover_img" [src]="product.img" alt="" style="height: 200px">
+                                    </div>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <div class="uk-margin-small-top">
+                                        <button type="button" class="uk-button uk-button-danger rounded hover_link" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
+                                        Ver más
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -39,7 +38,7 @@
 
 
 
-
+    <!-- MODAL PRODUCTO SELECCIONADO POR ID -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
