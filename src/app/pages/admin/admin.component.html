@@ -183,14 +183,13 @@
                     <!-- MODAL CARDS POR OBJETO-->
                     <div class="modal-body">
                         <div class="uk-overflow-auto">
-                            <table class="uk-table uk-table-divider uk-table-middle">
+                            <table class="uk-table uk-table-stripped uk-table-divider uk-table-middle ">
                                 <thead>
                                     <tr>
-                                        <th class="uk-table-shrink"></th>
-                                        <th>Nombre</th>
-                                        <th>ID</th>
-                                        <th class="uk-width-1-4 uk-width-small">Modificar</th>
-                                        <th></th>
+                                        <th class="uk-width-1-3 uk-text-middle uk-text-center">Foto</th>
+                                        <th class="uk-width-1-3 uk-text-middle uk-text-center">Nombre</th>
+                                        <th class="uk-width-1-5 uk-text-middle uk-text-center">Precio</th>
+                                        <th class="uk-width-1-5 uk-text-middle uk-text-center">Modificar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,8 +208,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)"><span uk-icon="icon: pencil; ratio: 1.2 " class="text-dark "></span></button>
-                                            <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) "><span uk-icon="icon: close; ratio: 1.2 " class="text-dark "></span></button>
+                                            <div class="uk-flex uk-flex-center uk-flex-middle">
+                                                <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)"><span uk-icon="icon: pencil; ratio: 1.2 " class="text-dark "></span></button>
+                                                <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) "><span uk-icon="icon: close; ratio: 1.2 " class="text-dark "></span></button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -254,7 +255,7 @@
                                         </div>
                                         <legend class="uk-legend text-dark">Precio</legend>
                                         <div class="uk-margin">
-                                            <input class="uk-input" id="title" type="number" formControlName="name" placeholder="">
+                                            <input class="uk-input" id="title" type="number" formControlName="price" placeholder="">
                                         </div>
                                     </div>
                                     <div class="uk-width-1-3@m bg-dangeruk-padding-remove">
@@ -273,7 +274,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                                <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
                             </fieldset>
                         </form>
                         <!-- VUELVE A MODAL GENERAL -->
