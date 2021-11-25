@@ -9,6 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
+
+
+
 import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './parts/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -20,6 +24,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { TestComponent } from './parts/test/test.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import { TestComponent } from './parts/test/test.component';
     AdminComponent,
     ModalFaqComponent,
     FooterComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { TestComponent } from './parts/test/test.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

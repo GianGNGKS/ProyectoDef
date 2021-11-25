@@ -9,6 +9,7 @@ import { Observable, pipe } from 'rxjs';
 
 //interfaz producto
 import { producto, IdProducto } from '../models/product.interface';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,11 @@ export class FirestoreService {
   //colección de productos
   private productCollection: AngularFirestoreCollection<any>
   productos:Observable<IdProducto[]> 
+  refProd:AngularFireStorageReference
 
-  constructor(private fst:AngularFirestore) { 
+  constructor(private fst:AngularFirestore, private fss:AngularFireStorage) { 
+    this.refProd = this.fss.ref('productosImg')
+    
     this.productCollection = this.fst.collection<IdProducto>('product')
     this.productos = this.productCollection.snapshotChanges().pipe(
       map(a => a.map(a => {
@@ -65,5 +69,17 @@ export class FirestoreService {
   //borra producto por id
   deleteProducto(id:string){
     return this.productCollection.doc(id).delete()
+  }
+
+
+  //STORAGE 
+
+  //subir archivo
+  uploadImg(name:string, data:any){
+    return this.fss.upload(`productosImg/${name}`, data);
+  }
+
+  returnRef(name:string){
+    return this.refProd.child(name)
   }
 }

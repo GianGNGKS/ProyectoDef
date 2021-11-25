@@ -10,6 +10,7 @@
                 <ul class="uk-navbar-nav">
                     <li class="uk-active"><a routerLink="faq" class="text-light hover_link">Preguntas Frecuentes</a></li>
                     <li class="uk-active"><a routerLink="product" class="text-light hover_link">Productos</a></li>
+                    <li class="uk-active"><a class="text-light hover_link" *ngIf="!user" (click)="logIn()">Iniciar sesión</a></li>
                     <li class="uk-active">
                         <a routerLink="admin" class="text-light hover_link"><span uk-icon="icon:lock; ratio .8"></span></a>
                     </li>

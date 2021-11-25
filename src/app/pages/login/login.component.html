@@ -1,0 +1,22 @@
+<div uk-height-viewport="expand: true">
+    <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap">
+            <div class="uk-container">
+                <form action="" [formGroup]="inputSession" (ngSubmit)="logIn()">
+                    <fieldset>
+                        <legend class="uk-legend text-dark">Usuario</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="email" formControlName="username" placeholder="">
+                        </div>
+                        <legend class="uk-legend text-dark">Contraseña</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" type="password" formControlName="password" placeholder="">
+                        </div>
+                        <div class="uk-divider-icon"></div>
+                        <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

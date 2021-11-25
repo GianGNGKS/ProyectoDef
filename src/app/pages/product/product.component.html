@@ -17,12 +17,12 @@
                                         <h5>{{product.name}}</h5>
                                         <h6>{{product.price | currency:'ARS':'$'}}</h6>
                                     </div>
-                                    <div class="uk-margin-small-bottom">
-                                        <img class="img-container hover_img" [src]="product.img" alt="" style="height: 200px">
+                                    <div class="uk-margin-small uk-padding uk-padding-remove-horizontal uk-padding-remove-top">
+                                        <img class="img-container hover_img imgfill uk-padding-small uk-padding uk-padding-remove-horizontal uk-padding-remove-top" [src]="product.img" alt="" style="height: 150px">
                                     </div>
                                 </div>
                                 <div class="uk-card-footer">
-                                    <div class="uk-margin-small-top">
+                                    <div class="">
                                         <button type="button" class="uk-button uk-button-danger rounded hover_link" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
                                         Ver más
                                         </button>
@@ -40,28 +40,34 @@
 
     <!-- MODAL PRODUCTO SELECCIONADO POR ID -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ SelectedProduct.name }}</h5>
+                <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                    <h4 class="modal-title uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="exampleModalLabel">{{ SelectedProduct.name }}</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="image">
-                        <img class="img-container" [src]="SelectedProduct.img" alt="" />
-                        <div>
-                            <h3 class="name-container">Precio</h3>
-                            <p class="price-container">
-                                {{ SelectedProduct.price | currency }}
-                            </p>
-                            <h3 class="name-container">Tamaño</h3>
-                            <p class="price-container">{{ SelectedProduct.size }}</p>
-                            <h3 class="name-container">Descripción</h3>
-                            <p class="price-container">{{ SelectedProduct.description }}</p>
-                            <p>{{ SelectedProduct.id }}</p>
+                <div class="modal-body uk-padding-remove-top">
+                    <div>
+                        <div class="uk-card-body uk-grid-match text-muted uk-padding-large uk-padding-remove-horizontal uk-padding-remove-top" uk-grid>
+                            <div class="uk-width-1-2 uk-flex uk-flex-center uk-flex-middle uk-padding-small-bottom uk-margin-remove">
+                                <img [src]="SelectedProduct.img" alt="{{ SelectedProduct.name }}" class="rounded uk-preserve-width hover_product imgfill" style="height:350px;">
+                            </div>
+                            <div class="uk-width-expand@m uk-padding-small">
+                                <div>
+                                    <div class="custom-max-height100">
+                                        <h3 class="uk-card-title uk-text-capitalize">{{SelectedProduct.name}}</h3>
+                                        <h4>{{SelectedProduct.price | currency:'ARS':'$'}}</h4>
+                                    </div>
+                                    <div class="uk-flex uk-flex-middle uk-height-1-1">
+                                        <div class="border rounded uk-text-break uk-width-expand">
+                                            <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small whitespace">{{SelectedProduct.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-footer uk-padding-remove-bottom">
+                        <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>

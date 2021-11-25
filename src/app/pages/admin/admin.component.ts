@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 //PREGUNTAS
 import { pregunta, IdPregunta } from 'src/app/models/faq.interface';
@@ -10,6 +12,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 
 
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,6 +21,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+
+  //GLOBAL HTML   
+  uploadState: boolean=false;
+  
+  //AUTH_STATE
+  user!: any;
 
   //PREGUNTAS
   preguntas!: IdPregunta[] //ARREGLO PREGUNTAS
@@ -30,8 +39,9 @@ export class AdminComponent implements OnInit {
   formularioProducto!: FormGroup; //FORMULARIO PRODUCTOS
   formularioProductoedit!: FormGroup; //FORMULARIO PRODUCTOS EDITAR
   idproducto!: string;
+  imgurlproducto:string= '../../../assets/img/notavailable.png';
 
-  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService) {
+  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService, private auth: AuthService, private router: Router) {
 
     //PREGUNTAS
     this.$db.getPreguntas().subscribe((resp => {
@@ -53,7 +63,7 @@ export class AdminComponent implements OnInit {
     this.formularioProducto = this.fb.group({
       name: [''],
       price: [''],
-      img: [''],
+      img: ['../../../assets/img/notavailable.png'],
       description: ['']
     })
     this.formularioProductoedit = this.fb.group({
@@ -63,6 +73,9 @@ export class AdminComponent implements OnInit {
       description: ['']
     })
 
+    this.auth.sessionCheck().subscribe(resp => {
+      this.user = resp
+    })
   }
 
   ngOnInit(): void {
@@ -97,15 +110,21 @@ export class AdminComponent implements OnInit {
   }
 
 
-  //AGREGAR, EDITAR Y ELIMINAR PRODUCTOS}
+  //AGREGAR, EDITAR Y ELIMINAR PRODUCTOS
   aceptarPRODUCTO() {
     const producto: producto = {
       name: this.formularioProducto.value.name,
-      img: this.formularioProducto.value.img,
+      img: this.imgurlproducto,
       price: this.formularioProducto.value.price,
       description: this.formularioProducto.value.description
     }
     this.$dbp.createProducto(producto)
+    this.formularioProducto.patchValue({
+      name: '',
+      img: '',
+      price: '', 
+      description: '',
+    })
   }
 
   deletePRODUCTO(id: string) {
@@ -129,10 +148,30 @@ export class AdminComponent implements OnInit {
     const producto: producto = {
       name: this.formularioProductoedit.value.name,
       price: this.formularioProductoedit.value.price,
-      img: this.formularioProductoedit.value.img,
+      img: this.imgurlproducto,
       description: this.formularioProductoedit.value.description
     }
     this.$dbp.updateProducto(this.idproducto, producto)
+  }
+
+  async selectIMG(event: any) {
+    this.uploadState = true
+    const fileProd = event.target.files[0]
+    let imgnamep = fileProd.name
+    let edittedFileName = imgnamep.replace(" ",'-')
+    console.log(edittedFileName)
+    this.$dbp.returnRef(edittedFileName)
+    await this.$dbp.uploadImg(edittedFileName, fileProd)
+    await this.$dbp.returnRef(edittedFileName).getDownloadURL().toPromise().then((downloadUrl: any) => {
+      this.imgurlproducto = downloadUrl;
+    })
+    this.uploadState = false;
+  }
+
+
+  logOut(){
+    this.auth.logout()
+    this.router.navigate(['/home']);
   }
 
 }

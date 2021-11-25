@@ -30,8 +30,8 @@ export class ProductComponent implements OnInit {
 
   //conexión de X producto con modal
   SeleccionarProducto(product: producto){
-    this.SelectedProduct =  product;
     this.modalActive = true;
+    this.SelectedProduct =  product;
   }
   
 }
