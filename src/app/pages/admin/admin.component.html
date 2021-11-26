@@ -23,7 +23,7 @@
                             <div class="uk-card uk-card-default uk-card-hover uk-card-body">
                                 <p class="uk-text-large">Inicio</p>
                                 <div class="uk-divider-icon"></div>
-                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalFAQ">
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-toggle="modal" data-bs-target="#modalINICIO">
                                     Configurar
                                 </button>
                             </div>
@@ -74,7 +74,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
                     <!-- MODAL HEADER -->
-                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .75; letter-spacing: 2px">
                         <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="faqLabel">Editar preguntas frecuentes</h3>
                     </div>
                     <!-- MODAL CARDS POR OBJETO-->
@@ -313,9 +313,9 @@
                                             <input class="uk-input" id="title" type="number" formControlName="price" placeholder="">
                                         </div>
                                     </div>
-                                    <div class="uk-width-1-3@m bg-dangeruk-padding-remove">
+                                    <div class="uk-width-1-3@m bg-danger uk-padding-remove">
                                         <div class="uk-flex uk-flex-center uk-flex-middle">
-                                            <img src="https://getuikit.com/docs/images/light.jpg" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:175px; width: 175px;">
+                                            <img src="" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:175px; width: 175px;">
                                         </div>
                                         <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal">
                                             <button class="uk-button uk-button-danger rounded">Subir imagen</button>
@@ -340,3 +340,139 @@
         </div>
 
         <!-- MODALES DE PRODUCTOS -->
+
+
+
+        <!-- MODALES INICIO -->
+        <div class="modal fade" id="modalINICIO" tabindex="-1" aria-labelledby="inicioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="inicioLabel">Editar productos</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div uk-grid class="uk-child-width-1-3@s uk-flex uk-flex-center uk-flex-middle uk-margin uk-padding-remove-vertical">
+                            <div>
+                                <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-info text-muted" style="--bs-bg-opacity: .7">
+                                    <p class="uk-text-large uk-text-capitalize"><span class="uk-text-bold">Carrusel de imágenes</span></p>
+                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalCAROUSEL" data-bs-toggle="modal">
+                                        <span uk-icon="icon: pencil; ratio: 1.2" class="text-muted"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-warning text-muted" style="--bs-bg-opacity: .7">
+                                    <p class="uk-text-large uk-text-capitalize"><span class="uk-text-bold">Productos destacados</span></p>
+                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#" data-bs-toggle="modal">
+                                        <span uk-icon="icon: pencil; ratio: 1.2" class="text-muted"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MODAL CERRAR Y AGREGAR -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row uk-margin-small-bottom">
+                                <!-- CIERRA MODAL -->
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL CAROUSEL -->
+        <div class="modal fade" id="modalCAROUSEL" tabindex="-1" aria-labelledby="a" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="a">Editar Carousel</h3>
+                    </div>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <div class="uk-overflow-auto">
+                            <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-danger text-light" style="--bs-bg-opacity: .7">
+                                        <h1 class="uk-heading-divider uk-text-lead text-light">Foto 1</h1>
+                                        <img [src]="pictures[0].img" class="rounded">
+                                        <div class="uk-heading-divider"></div>
+                                        <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalCAROUSELeditar" data-bs-toggle="modal" (click)="selectPic(pictures[0].id, 0)"><span uk-icon="icon: pencil; ratio: 1.2" class="text-light"></span></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-danger text-light" style="--bs-bg-opacity: .7">
+                                        <h1 class="uk-heading-divider uk-text-lead text-light">Foto 2</h1>
+                                        <img [src]="pictures[1].img" class="rounded">
+                                        <div class="uk-heading-divider"></div>
+                                        <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalCAROUSELeditar" data-bs-toggle="modal" (click)="selectPic(pictures[1].id, 1)"><span uk-icon="icon: pencil; ratio: 1.2" class="text-light"></span></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-card-hover uk-margin-bottom rounded bg-danger text-light" style="--bs-bg-opacity: .7">
+                                        <h1 class="uk-heading-divider uk-text-lead text-light">Foto 3</h1>
+                                        <img [src]="pictures[2].img" class="rounded">
+                                        <div class="uk-heading-divider"></div>
+                                        <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalCAROUSELeditar" data-bs-toggle="modal" (click)="selectPic(pictures[2].id, 2)"><span uk-icon="icon: pencil; ratio: 1.2" class="text-light"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MODAL CERRAR Y AGREGAR -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row uk-margin-small-bottom">
+                                <!-- CIERRA MODAL -->
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-target="#modalINICIO" data-bs-toggle="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL CAROUSEL EDITAR -->
+
+        <div class="modal fade" id="modalCAROUSELeditar" tabindex="-1" aria-labelledby="labelCAROUSELeditar" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header bg-danger" style="--bs-bg-opacity: .85; letter-spacing: 2px">
+                        <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="labelCAROUSELeditar">Editar Carousel</h3>
+                    </div>
+                    <!-- MODAL CARDS POR OBJETO-->
+                    <div class="modal-body">
+                        <div class="uk-overflow-auto">
+                            <div class="uk-card-body uk-grid-match text-muted uk-flex uk-flex-center uk-flex-middle" uk-grid>
+                                <div class="uk-width-1-1">
+                                    <div class="uk-flex uk-flex-center uk-flex-middle">
+                                        <img [src]="pictures[indicePic].img" alt="" class="rounded" style="object-fit: fill; width: 250px; height: 150px">
+                                    </div>
+                                    <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal">
+                                        <div uk-form-custom>
+                                            <input type="file" (change)="selectPicIMG($event)" [disabled]="uploadState">
+                                            <button class="uk-button uk-button-danger uk-width-1-1 rounded" type="button" tabindex="-1" [disabled]="uploadState">Subir imagen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- MODAL CERRAR Y AGREGAR -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row uk-margin-small-bottom">
+                                <!-- CIERRA MODAL -->
+                                <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-bs-target="#modalCAROUSEL" data-bs-toggle="modal">Volver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

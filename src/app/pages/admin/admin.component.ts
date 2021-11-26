@@ -13,6 +13,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CarouselService } from 'src/app/services/carousel.service';
+import { IdPicture, Ipicture } from 'src/app/models/carousel.interface';
 
 
 @Component({
@@ -23,8 +25,8 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   //GLOBAL HTML   
-  uploadState: boolean=false;
-  
+  uploadState: boolean = false;
+
   //AUTH_STATE
   user!: any;
 
@@ -39,9 +41,15 @@ export class AdminComponent implements OnInit {
   formularioProducto!: FormGroup; //FORMULARIO PRODUCTOS
   formularioProductoedit!: FormGroup; //FORMULARIO PRODUCTOS EDITAR
   idproducto!: string;
-  imgurlproducto:string= '../../../assets/img/notavailable.png';
+  imgurlproducto: string = '../../../assets/img/notavailable.png';
 
-  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService, private auth: AuthService, private router: Router) {
+  //CAROUSEL
+  pictures!: IdPicture[]
+  idpicture!: string;
+  indicePic!:number;
+  imgurlpicture: string = '../../../assets/img/notavailable.png'
+
+  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService, private auth: AuthService, private router: Router, private $dbpi: CarouselService,) {
 
     //PREGUNTAS
     this.$db.getPreguntas().subscribe((resp => {
@@ -72,6 +80,10 @@ export class AdminComponent implements OnInit {
       img: [''],
       description: ['']
     })
+
+    this.$dbpi.getPictures().subscribe((resp => {
+      this.pictures = resp;
+    }))
 
     this.auth.sessionCheck().subscribe(resp => {
       this.user = resp
@@ -122,7 +134,7 @@ export class AdminComponent implements OnInit {
     this.formularioProducto.patchValue({
       name: '',
       img: '',
-      price: '', 
+      price: '',
       description: '',
     })
   }
@@ -158,7 +170,7 @@ export class AdminComponent implements OnInit {
     this.uploadState = true
     const fileProd = event.target.files[0]
     let imgnamep = fileProd.name
-    let edittedFileName = imgnamep.replace(" ",'-')
+    let edittedFileName = imgnamep.replace(" ", '-')
     console.log(edittedFileName)
     this.$dbp.returnRef(edittedFileName)
     await this.$dbp.uploadImg(edittedFileName, fileProd)
@@ -168,8 +180,30 @@ export class AdminComponent implements OnInit {
     this.uploadState = false;
   }
 
+  selectPic(id: string, indice: number) {
+    this.idpicture = id;
+    this.indicePic = indice;
+    console.log(this.idpicture);
+  }
 
-  logOut(){
+  async selectPicIMG(event:any){
+    this.uploadState = true
+    const filePic = event.target.files[0]
+    let imgnamepic = filePic.name
+    let edittedFileName = imgnamepic.replace(' ', '-')
+    this.$dbpi.returnRef(edittedFileName)
+    await this.$dbpi.uploadImg(edittedFileName, filePic)
+    await this.$dbpi.returnRef(edittedFileName).getDownloadURL().toPromise().then((downloadUrl: any) => {
+      this.imgurlpicture = downloadUrl
+    })
+    this.uploadState = false
+    const picture: Ipicture = {
+      img: this.imgurlpicture
+    }
+    this.$dbpi.updatePicture(this.idpicture, picture)
+  }
+
+  logOut() {
     this.auth.logout()
     this.router.navigate(['/home']);
   }

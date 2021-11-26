@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 
 // Observables library
 import { map } from 'rxjs/operators';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 
 //interfaz pregunta
 import { IdPregunta, pregunta } from '../models/faq.interface';
