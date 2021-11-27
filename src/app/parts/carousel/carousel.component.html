@@ -1,10 +1,15 @@
 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
     <div class="uk-text-center uk-light title_parent">
-        <h2 class="title_child uk-padding rounded uk-text-lead uk-text-large uk-text-bolder" uk-slideshow-parallax="x: 100,-100">a</h2>
+        <h2 class="title_child uk-padding rounded fs-1 bg-dark shadow-lg font-monospace uk-text-bold" style="--bs-bg-opacity: .4">
+            Bienvenido a (variable)
+        </h2>
+
     </div>
     <ul class="uk-slideshow-items">
         <li *ngFor="let picture of pictures">
-            <img [src]="picture.img" alt="" uk-cover>
+            <div class="uk-position-cover uk-animation-kenburns uk-transform-origin-center">
+                <img [src]="picture.img" alt="" uk-cover> </div>
+
             <div class="uk-position-center uk-position-small uk-text-center uk-light">
             </div>
         </li>

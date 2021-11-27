@@ -1,0 +1,19 @@
+.title_parent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+    margin: auto !important;
+    display: flex;
+    pointer-events: none;
+}
+
+.title_child {
+    margin: auto;
+    pointer-events: none;
+    background-color: #584c56;
+    width: 100%;
+    font-stretch: ultra-condensed;
+}

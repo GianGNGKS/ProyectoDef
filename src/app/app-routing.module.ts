@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './pages/admin/admin.component';
+import { AdministatorComponent } from './pages/administator/administator.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'modalfaq', component: ModalFaqComponent
   },
   {
-    path: 'admin', component: AdminComponent, 
+    path: 'admin', component: AdministatorComponent, 
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },

@@ -65,7 +65,7 @@
 /* FUNCIONA EN CHROME, EDGE Y FIREFOX */
 
 *::-webkit-scrollbar {
-    width: 1em;
+    width: .7em;
 }
 
 *::-webkit-scrollbar-track {
@@ -88,6 +88,16 @@
 
 .custom-max-height100 {
     max-height: 100px
+}
+
+.custom-max-height250 {
+    height: 200px;
+    border-radius: 5px
+}
+
+.custom-height100 {
+    height: 100px;
+    border-radius: 5px
 }
 
 //SALTO DE LINEAS

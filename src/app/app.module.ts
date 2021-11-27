@@ -25,6 +25,7 @@ import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { TestComponent } from './parts/test/test.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AdministatorComponent } from './pages/administator/administator.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoginComponent } from './pages/login/login.component';
     ModalFaqComponent,
     FooterComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    AdministatorComponent
   ],
   imports: [
     BrowserModule,

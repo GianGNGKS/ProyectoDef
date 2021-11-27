@@ -1,0 +1,154 @@
+<div uk-height-viewport="expand: true" class="bg-info">
+    <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-info" style="--bs-bg-opacity: .5; margin-bottom: -1.3em" id="s_productos">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center uk-background-primary text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Productos
+                </h1>
+            </div>
+            <div class="uk-container">
+                <table class="uk-table uk-table-divider uk-table-middle bg-primary text-light rounded border border-white" style="--bs-bg-opacity: .5">
+                    <thead>
+                        <tr>
+                            <th class="uk-width-1-3 uk-text-middle uk-text-center text-light">Foto</th>
+                            <th class="uk-width-1-3 uk-text-middle uk-text-center text-light">Nombre</th>
+                            <th class="uk-width-1-5 uk-text-middle uk-text-center text-light">Precio</th>
+                            <th class="uk-width-1-5 uk-text-middle uk-text-center text-light">Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos">
+                            <td class="uk-flex uk-flex-center uk-flex-middle">
+                                <img src="{{producto.img}}" alt="" class="rounded uk-preserve-width imgfill" style="height:100px; width:100px;">
+                            </td>
+                            <td class="text-dark uk-text-nowrap">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <p class="text-light">{{producto.name}}</p>
+                                </div>
+                            </td>
+                            <td class="text-dark uk-text-nowrap">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <p class="text-light">{{producto.price | currency:'ARS':'$'}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)"><span
+                                        uk-icon="icon: pencil; ratio: 1.2 " class="text-light "></span></button>
+                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) "><span
+                                        uk-icon="icon: close; ratio: 1.2 " class="text-light "></span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-success" style="--bs-bg-opacity: .65;" id="s_preguntas">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-success  text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Preguntas
+                </h1>
+            </div>
+            <div class="uk-container">
+                <table class="uk-table uk-table-divider uk-table-middle bg-success text-light rounded border border-white" style="--bs-bg-opacity: .45">
+                    <thead>
+                        <tr>
+                            <th class="uk-width-1-3 uk-text-middle uk-text-center text-light uk-table-shrink">Título</th>
+                            <th class="uk-width-1-3 uk-text-middle uk-text-center text-light">Descripción</th>
+                            <th class="uk-width-1-5 uk-text-middle uk-text-center text-light">Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pregunta of preguntas">
+                            <td class="text-dark uk-text-break">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <p class="text-light text-center">{{pregunta.title}}</p>
+                                </div>
+                            </td>
+                            <td class="text-dark uk-text-break">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <p class="text-light">{{pregunta.description}}</p>
+                                </div>
+                            </td>
+                            <td class="text-dark uk-text-nowrap">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.2"
+                                        class="text-light"></span></button>
+                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"
+                                        class="text-light"></span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-warning" style="--bs-bg-opacity: .65" id="s_inicio">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-warning  text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Inicio
+                </h1>
+            </div>
+            <div class="uk-container bg-warning text-light rounded border border-white uk-padding-remove" style="--bs-bg-opacity: .6">
+                <div class="uk-child-width-1-4 uk-grid-match uk-text-center uk-padding uk-flex uk-flex-center uk-flex-middle" uk-grid>
+                    <div>
+                        <div class="uk-card bg-light uk-card-body img_pic rounded" style="--bs-bg-opacity: .2; height: 400px">
+                            <div>
+                                <h1 class="uk-heading-divider uk-text-lead text-light">Foto 1</h1>
+                            </div>
+                            <div>
+                                <img [src]="pictures[0].img" class="rounded" style="object-fit: fill; width: 250px;">
+                            </div>
+                            <div>
+                                <div uk-form-custom>
+                                    <input type="file" (change)="selectIMG(pictures[0].id, $event)">
+                                    <button class="uk-button uk-button-light rounded text-dark" type="button" tabindex="-1"><div class="uk-padding-small uk-padding-remove-vertical">Subir Imagen</div></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card bg-light uk-card-body img_pic rounded" style="--bs-bg-opacity: .2; height: 400px">
+                            <div>
+                                <h1 class="uk-heading-divider uk-text-lead text-light">Foto 2</h1>
+                            </div>
+                            <div>
+                                <img [src]="pictures[1].img" class="rounded" style="object-fit: fill; width: 250px;">
+                            </div>
+                            <div>
+                                <div uk-form-custom>
+                                    <input type="file" (change)="selectIMG(pictures[1].id, $event)">
+                                    <button class="uk-button uk-button-light rounded text-dark" type="button" tabindex="-1"><div class="uk-padding-small uk-padding-remove-vertical">Subir Imagen</div></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card bg-light uk-card-body img_pic rounded" style="--bs-bg-opacity: .2; height: 400px">
+                            <div>
+                                <h1 class="uk-heading-divider uk-text-lead text-light">Foto 3</h1>
+                            </div>
+                            <div>
+                                <img [src]="pictures[2].img" class="rounded" style="object-fit: fill; width: 250px;">
+                            </div>
+                            <div>
+                                <div uk-form-custom>
+                                    <input type="file" (change)="selectIMG(pictures[2].id, $event)">
+                                    <button class="uk-button uk-button-light rounded text-dark" type="button" tabindex="-1"><div class="uk-padding-small uk-padding-remove-vertical">Subir Imagen</div></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="menu_side uk-padding-small rounded bg-danger">
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_productos" uk-scroll>Productos</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_preguntas" uk-scroll>Preguntas</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_inicio" uk-scroll>Inicio</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_contacto" uk-scroll>Contacto</a> </div>
+</div>

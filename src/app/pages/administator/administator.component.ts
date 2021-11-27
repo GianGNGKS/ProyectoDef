@@ -1,21 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { IdPicture, Ipicture } from 'src/app/models/carousel.interface';
-import { IdPregunta, pregunta } from 'src/app/models/faq.interface';
-import { IdProducto, producto } from 'src/app/models/product.interface';
-import { CarouselService } from 'src/app/services/carousel.service';
+import { AuthService } from 'src/app/services/auth.service';
+
+
+//PREGUNTAS
+import { pregunta, IdPregunta } from 'src/app/models/faq.interface';
 import { FaqService } from 'src/app/services/faq.service';
+
+//PRODUCTOS
+import { IdProducto, producto } from 'src/app/models/product.interface';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
+
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CarouselService } from 'src/app/services/carousel.service';
+import { IdPicture, Ipicture } from 'src/app/models/carousel.interface';
+
+
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  selector: 'app-administator',
+  templateUrl: './administator.component.html',
+  styleUrls: ['./administator.component.scss']
 })
-export class TestComponent implements OnInit {
+export class AdministatorComponent implements OnInit {
 
+  //GLOBAL HTML   
+  uploadState: boolean = false;
 
-  uploadState:boolean = false;
+  //AUTH_STATE
+  user!: any;
 
   //PREGUNTAS
   preguntas!: IdPregunta[] //ARREGLO PREGUNTAS
@@ -23,6 +36,7 @@ export class TestComponent implements OnInit {
   formularioFAQedit: FormGroup; //FORMULARIO PREGUNTAS EDITAR
   idpregunta!: string
 
+  //PRODUCTOS
   productos!: IdProducto[] //ARREGLO PRODUCTOS
   formularioProducto!: FormGroup; //FORMULARIO PRODUCTOS
   formularioProductoedit!: FormGroup; //FORMULARIO PRODUCTOS EDITAR
@@ -31,8 +45,13 @@ export class TestComponent implements OnInit {
 
   //CAROUSEL
   pictures!: IdPicture[]
+  idpicture!: string;
+  indicePic!:number;
+  imgurlpicture: string = '../../../assets/img/notavailable.png'
 
-  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService, private $dbpi: CarouselService) {
+  constructor(private $db: FaqService, private fb: FormBuilder, private $dbp: FirestoreService, private auth: AuthService, private router: Router, private $dbpi: CarouselService,) {
+
+    //PREGUNTAS
     this.$db.getPreguntas().subscribe((resp => {
       this.preguntas = resp;
     }))
@@ -45,18 +64,35 @@ export class TestComponent implements OnInit {
       description: ['']
     })
 
+    //PRODUCTOS
     this.$dbp.getProductos().subscribe((resp => {
       this.productos = resp
     }))
+    this.formularioProducto = this.fb.group({
+      name: [''],
+      price: [''],
+      img: ['../../../assets/img/notavailable.png'],
+      description: ['']
+    })
+    this.formularioProductoedit = this.fb.group({
+      name: [''],
+      price: [''],
+      img: [''],
+      description: ['']
+    })
 
     this.$dbpi.getPictures().subscribe((resp => {
       this.pictures = resp;
     }))
+
+    this.auth.sessionCheck().subscribe(resp => {
+      this.user = resp
+    })
   }
 
   ngOnInit(): void {
   }
-
+  //AGREGAR, EDITAR Y ELIMINAR PREGUNTAS
   deleteFAQ(id: string) {
     this.$db.deletePregunta(id);
   }
@@ -85,6 +121,8 @@ export class TestComponent implements OnInit {
     this.$db.updatePregunta(this.idpregunta, pregunta);
   }
 
+
+  //AGREGAR, EDITAR Y ELIMINAR PRODUCTOS
   aceptarPRODUCTO() {
     const producto: producto = {
       name: this.formularioProducto.value.name,
@@ -128,27 +166,49 @@ export class TestComponent implements OnInit {
     this.$dbp.updateProducto(this.idproducto, producto)
   }
 
-  async selectIMG(id: string, event: any){
-    let imgpicture!: any;
-    this.uploadState = true;
-    const filePic = event.target.files[0];
-    console.log(filePic);
-    let imgnamepic = filePic.name;
-    let edittedFileName = imgnamepic.replace(' ', '-');
-    console.log(edittedFileName);
-    this.$dbpi.returnRef(edittedFileName);
-    await this.$dbpi.uploadImg(edittedFileName, filePic);
-    await this.$dbpi.returnRef(edittedFileName).getDownloadURL().toPromise().then((downloadURL) =>{
-      imgpicture = downloadURL
-      console.log(downloadURL)
+  async selectIMG(event: any) {
+    this.uploadState = true
+    const fileProd = event.target.files[0]
+    let imgnamep = fileProd.name
+    let edittedFileName = imgnamep.replace(" ", '-')
+    console.log(edittedFileName)
+    this.$dbp.returnRef(edittedFileName)
+    await this.$dbp.uploadImg(edittedFileName, fileProd)
+    await this.$dbp.returnRef(edittedFileName).getDownloadURL().toPromise().then((downloadUrl: any) => {
+      this.imgurlproducto = downloadUrl;
     })
-    console.log(imgpicture)
-    const pictures:Ipicture = {
-      img: imgpicture
-    }
-    this.$dbpi.updatePicture(id, pictures);
     this.uploadState = false;
   }
 
+  selectPic(id: string, indice: number) {
+    this.idpicture = id;
+    this.indicePic = indice;
+    console.log(this.indicePic)
+    console.log(this.idpicture);
+  }
+
+  async selectPicIMG(event:any, id:string, indice:number){
+    this.idpicture = id;
+    this.indicePic = indice;
+    this.uploadState = true
+    const filePic = event.target.files[0]
+    let imgnamepic = filePic.name
+    let edittedFileName = imgnamepic.replace(' ', '-')
+    this.$dbpi.returnRef(edittedFileName)
+    await this.$dbpi.uploadImg(edittedFileName, filePic)
+    await this.$dbpi.returnRef(edittedFileName).getDownloadURL().toPromise().then((downloadUrl: any) => {
+      this.imgurlpicture = downloadUrl
+    })
+    this.uploadState = false
+    const picture: Ipicture = {
+      img: this.imgurlpicture
+    }
+    this.$dbpi.updatePicture(this.idpicture, picture)
+  }
+
+  logOut() {
+    this.auth.logout()
+    this.router.navigate(['/home']);
+  }
 
 }
