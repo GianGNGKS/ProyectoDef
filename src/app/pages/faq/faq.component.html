@@ -1,14 +1,21 @@
-<div uk-height-viewport="expand: true">
+<div uk-height-viewport="expand: true" class="bg-dark" style="--bs-bg-opacity: .25;">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-remove-bottom" *ngFor="let pregunta of preguntas">
-            <div class="uk-container uk-container-small">
-                <ul uk-accordion="multiple: true">
-                    <li class="uk-open">
+        <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap" style="--bs-bg-opacity: .85;">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-success text-light rounded border border-white font-monospace rainbow" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Preguntas
+                </h1>
+            </div>
+            <div class="uk-divider-icon" uk-scrollspy="cls: uk-animation-slide-bottom;"></div>
+            <div class="uk-container uk-container-small uk-padding" *ngFor="let pregunta of preguntas">
+                <ul uk-accordion="multiple: true" uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-open">
+                    <li class="uk-open border uk-padding-remove rounded bg-dark">
                         <a class="uk-accordion-title uk-text-decoration-none" href="#">
-                            <h2 class="uk-text-large uk-text-uppercase  uk-text-center text-dark">{{pregunta.title}}</h2>
+                            <h2 class="uk-text-large uk-text-uppercase uk-text-center text-light uk-padding-small bg-dark rounded" style="--bs-bg-opacity: .85; letter-spacing: 1px">{{pregunta.title}}</h2>
+                            <hr style="border: 1px solid #fff;">
                         </a>
                         <div class="uk-accordion-content">
-                            <p class="uk-text-break uk-text-justify uk-dropcap text-dark whitespace">{{pregunta.description}}</p>
+                            <p class="uk-text-break uk-text-justify uk-dropcap text-light whitespace uk-padding-small">{{pregunta.description}}</p>
                         </div>
                     </li>
                 </ul>

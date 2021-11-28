@@ -223,7 +223,7 @@ export class TestComponent implements OnInit {
       }
       this.$dbp.updateProducto(id, producto)
     }
-    this.toast.info("Se ha agregado el producto exitosamente a la sección Destacados.", "Producto destacado", {positionClass: 'toast-bottom-right', closeButton: true})
+    this.toast.info("Se ha modificado el estado del producto en la sección Destacados con éxito.", "Producto destacado", {positionClass: 'toast-bottom-right', closeButton: true})
   }
 
 

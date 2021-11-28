@@ -14,10 +14,10 @@ export class FooterComponent implements OnInit {
   constructor(private $db: ContactService) {
     this.$db.getContactos().subscribe((resp => {
       this.contacts = resp;
+
     }))
   }
 
   ngOnInit(): void {
   }
-
 }

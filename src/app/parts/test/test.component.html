@@ -1,6 +1,6 @@
 <div uk-height-viewport="expand: true" class="bg-white">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-white" style="--bs-bg-opacity: .5; margin-bottom: 0" id="s_productos">
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-white" style="--bs-bg-opacity: .5; margin-bottom: 0" id="s_logout">
             <div class="uk-container uk-padding uk-padding-remove-horizontal">
                 <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center uk-background-secondary text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
                     Panel de administración
@@ -50,8 +50,11 @@
                             </td>
                             <td>
                                 <div class="uk-flex uk-flex-center uk-flex-middle">
-                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="favProduct(producto.id, producto.fav!)">
-                                        <span uk-icon="icon: bookmark; ratio: 1.5"  class="uk-text-warning"></span>
+                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="favProduct(producto.id, producto.fav!)" *ngIf="!producto.fav">
+                                        <span uk-icon="icon: plus-circle; ratio: 1.5"  class="uk-text-warning"></span>
+                                    </button>
+                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="favProduct(producto.id, producto.fav!)" *ngIf="producto.fav">
+                                        <span uk-icon="icon: minus-circle; ratio: 1.5"  class="uk-text-warning"></span>
                                     </button>
                                     <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)">
                                         <span uk-icon="icon: pencil; ratio: 1.5" class="text-light"></span>
@@ -185,11 +188,11 @@
                             <div class="uk-margin">
                                 <input class="uk-input" type="text" formControlName="address" placeholder="Nombre del producto">
                             </div>
-                            <legend class="uk-legend text-dark uk-text-large">URL Instagram</legend>
+                            <legend class="uk-legend text-dark uk-text-large">URL <span class="text-danger">Instagram</span></legend>
                             <div class="uk-margin">
                                 <input class="uk-input" type="text" formControlName="instagram" placeholder="Nombre del producto">
                             </div>
-                            <legend class="uk-legend text-dark uk-text-large">URL Facebook</legend>
+                            <legend class="uk-legend text-dark uk-text-large">URL <span class="text-primary">Facebook</span></legend>
                             <div class="uk-margin">
                                 <input class="uk-input" type="text" formControlName="facebook" placeholder="Nombre del producto">
                             </div>
@@ -207,10 +210,11 @@
 </div>
 
 <div class="menu_side uk-padding-small rounded bg-danger">
-    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_productos" uk-scroll>Productos</a> </div>
-    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_preguntas" uk-scroll>Preguntas</a> </div>
-    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_inicio" uk-scroll>Inicio</a> </div>
-    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_contacto" uk-scroll>Contacto</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_logout" uk-scroll><span uk-icon="icon:arrow-up;ratio: 1.2;"></span> Ir arriba</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_productos" uk-scroll><span uk-icon="icon:tag;ratio: 1.2;"></span> Productos</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_preguntas" uk-scroll><span uk-icon="icon:comments;ratio: 1.2;"></span> Preguntas</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_inicio" uk-scroll><span uk-icon="icon:home;ratio: 1.2;"></span> Inicio</a> </div>
+    <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_contacto" uk-scroll><span uk-icon="icon:users;ratio: 1.2;"></span> Contacto</a> </div>
 </div>
 
 <!-- MODAL PRODUCTO AGREGAR -->

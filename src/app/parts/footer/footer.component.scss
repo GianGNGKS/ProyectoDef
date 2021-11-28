@@ -1,3 +1,31 @@
 .footer_height {
     height: 3em;
 }
+
+a {
+    color: #fff;
+    transition: .3s;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: #fff;
+    letter-spacing: 2px;
+}
+
+.hover_link_w:hover {
+    color: rgb(60, 220, 60);
+    -webkit-text-stroke-color: rgb(60, 220, 60);
+}
+
+.hover_link_i:hover {
+    color: rgb(250, 130, 250);
+    -webkit-text-stroke-color: rgb(250, 130, 250);
+}
+
+.hover_link_f:hover {
+    color: rgb(60, 100, 210);
+    -webkit-text-stroke-color: rgb(60, 100, 210);
+}
+
+.hover_link_m:hover {
+    color: rgb(230, 240, 90);
+    -webkit-text-stroke-color: rgb(230, 240, 90);
+}

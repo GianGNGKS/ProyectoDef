@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   user!: any
 
 
-  constructor(private formularioSesion: FormBuilder, private authSession: AuthService, private router: Router) {
+  constructor(private formularioSesion: FormBuilder, private authSession: AuthService, private router: Router, private toast: ToastrService) {
     this.inputSession = this.formularioSesion.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -28,7 +29,12 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.authSession.login(this.inputSession.value.username, this.inputSession.value.password)
-    this.router.navigate(['/test']);
+    this.authSession.login(this.inputSession.value.username, this.inputSession.value.password).then( () =>{
+      this.router.navigate(['/test']);
+    }).catch(error => {
+      this.toast.error('Usuario y contraseña incorrectos','No se ha podido iniciar sesión')
+    })
+      
+    
   }
 }

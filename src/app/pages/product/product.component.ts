@@ -12,6 +12,7 @@ export class ProductComponent implements OnInit {
   // producto
   products!: any[]
   SelectedProduct: any;
+  emptyDesc!: boolean;
 
   //modal
   modalActive!: boolean;
@@ -32,6 +33,9 @@ export class ProductComponent implements OnInit {
   SeleccionarProducto(product: producto){
     this.modalActive = true;
     this.SelectedProduct =  product;
+    if(!this.SelectedProduct.description){
+      this.emptyDesc = true;
+    }
   }
   
 }

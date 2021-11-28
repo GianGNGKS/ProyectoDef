@@ -1,19 +1,32 @@
-<div uk-height-viewport="expand: true">
+<div uk-height-viewport="expand: true" class="bg-dark" style="--bs-bg-opacity: .25;">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap">
-            <div class="uk-container">
+        <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap" style="--bs-bg-opacity: .85;">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-danger text-light rounded border border-white font-monospace rainbow" style="--bs-bg-opacity: .9; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Iniciar sesión
+                </h1>
+            </div>
+            <div class="uk-container uk-padding-large uk-padding-remove-vertical">
                 <form action="" [formGroup]="inputSession" (ngSubmit)="logIn()">
                     <fieldset>
-                        <legend class="uk-legend text-dark">Usuario</legend>
-                        <div class="uk-margin">
-                            <input class="uk-input" type="email" formControlName="username" placeholder="">
+                        <div class="uk-padding-large uk-padding-remove-vertical uk-child-width-1-1">
+                            <div class="uk-flex uk-flex-center uk-flex-middle bg-danger rounded border border-2" style="flex-direction: column;">
+                                <div class="uk-width-1-3 uk-padding-small">
+                                    <legend class="uk-legend text-light font-monospace text-center">Usuario</legend>
+                                    <div class="uk-margin">
+                                        <input class="uk-input" type="email" formControlName="username" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-3 uk-padding-small">
+                                    <legend class="uk-legend text-light font-monospace text-center">Contraseña</legend>
+                                    <div class="uk-margin">
+                                        <input class="uk-input" type="password" formControlName="password" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-divider-icon"></div>
+                            <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom border rounded uk-text-large uk-padding-small uk-padding-remove-horizontal font-monospace" style="--bs-bg-opacity: .7; letter-spacing: 1px">Ingresar</button>
                         </div>
-                        <legend class="uk-legend text-dark">Contraseña</legend>
-                        <div class="uk-margin">
-                            <input class="uk-input" type="password" formControlName="password" placeholder="">
-                        </div>
-                        <div class="uk-divider-icon"></div>
-                        <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
                     </fieldset>
                 </form>
             </div>

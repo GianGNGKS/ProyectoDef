@@ -1,32 +1,30 @@
-<div uk-height-viewport="expand: true">
+<div uk-height-viewport="expand: true" class="bg-dark" style="--bs-bg-opacity: .25;">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap">
-            <div class="uk-container">
-                <h1 class="uk-heading-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-danger text-light bg-gradient" style="--bs-bg-opacity: .85; letter-spacing: 5px">
-                    Nuestros Productos
+        <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap" style="--bs-bg-opacity: .85;">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-primary text-light rounded border border-white font-monospace rainbow" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Productos
                 </h1>
             </div>
-            <div class="uk-divider-icon"></div>
+            <div class="uk-divider-icon" uk-scrollspy="cls: uk-animation-slide-bottom;"></div>
             <div class="uk-container">
                 <div class="">
-                    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-grid-match " uk-grid>
+                    <div class="uk-child-width-1-3@s uk-child-width-1-4@m uk-text-center uk-grid-match " uk-grid>
                         <div *ngFor="let product of products" uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 100;">
-                            <div class="uk-card uk-card-default uk-card-hover">
-                                <div class=" uk-card-body uk-padding-bottom">
+                            <div class="uk-card uk-card-default uk-card-hover bg-dark border border-2 rounded uk-height-large" style="--bs-bg-opacity: .45;">
+                                <div class=" uk-card-body uk-padding">
                                     <div>
-                                        <h5>{{product.name}}</h5>
-                                        <h6>{{product.price | currency:'ARS':'$'}}</h6>
+                                        <h5 class="uk-text-truncate text-white">{{product.name}}</h5>
+                                        <h6 class="text-white">{{product.price | currency:'ARS':'$'}}</h6>
                                     </div>
-                                    <div class="uk-margin-small uk-padding uk-padding-remove-horizontal uk-padding-remove-top">
-                                        <img class="img-container hover_img imgfill uk-padding-small uk-padding uk-padding-remove-horizontal uk-padding-remove-top" [src]="product.img" alt="" style="height: 150px">
+                                    <div class="uk-margin-small uk-padding-large uk-padding-remove-horizontal uk-padding-remove-top">
+                                        <img class="img-container hover_img imgfill uk-padding-small uk-padding uk-padding-remove-horizontal uk-padding-remove border border-dark rounded" [src]="product.img" alt="" style="height: 150px">
                                     </div>
                                 </div>
-                                <div class="uk-card-footer">
-                                    <div class="">
-                                        <button type="button" class="uk-button uk-button-danger rounded hover_link" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
+                                <div class="uk-card-footer uk-height-small">
+                                    <button type="button" class="uk-button uk-button-text rounded hover_link text-white" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
                                         Ver más
                                         </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -35,40 +33,45 @@
             </div>
         </div>
     </div>
+</div>
 
 
 
-    <!-- MODAL PRODUCTO SELECCIONADO POR ID -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
-                    <h4 class="modal-title uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="exampleModalLabel">{{ SelectedProduct.name }}</h4>
-                </div>
-                <div class="modal-body uk-padding-remove-top">
-                    <div>
-                        <div class="uk-card-body uk-grid-match text-muted uk-padding-large uk-padding-remove-horizontal uk-padding-remove-top" uk-grid>
-                            <div class="uk-width-1-2 uk-flex uk-flex-center uk-flex-middle uk-padding-small-bottom uk-margin-remove">
-                                <img [src]="SelectedProduct.img" alt="{{ SelectedProduct.name }}" class="rounded uk-preserve-width hover_product imgfill" style="height:350px;">
-                            </div>
-                            <div class="uk-width-expand@m uk-padding-small">
-                                <div>
-                                    <div class="custom-max-height100">
-                                        <h3 class="uk-card-title uk-text-capitalize">{{SelectedProduct.name}}</h3>
-                                        <h4>{{SelectedProduct.price | currency:'ARS':'$'}}</h4>
+<!-- MODAL PRODUCTO SELECCIONADO POR ID -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                <h4 class="modal-title uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="exampleModalLabel">Más información</h4>
+            </div>
+            <div class="modal-body uk-padding-remove-top bg-dark">
+                <div>
+                    <div class="uk-card-body uk-grid-match uk-padding-large uk-padding-remove-horizontal uk-padding-remove-top" uk-grid>
+                        <div class="uk-width-1-2 uk-flex uk-flex-center uk-flex-middle uk-padding-small-bottom uk-margin-remove">
+                            <img [src]="SelectedProduct.img" alt="{{ SelectedProduct.name }}" class="rounded uk-preserve-width hover_product imgfill" style="height:350px;">
+                        </div>
+                        <div class="uk-width-expand@m uk-padding-small">
+                            <div>
+                                <div class="custom-max-height100 uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom" style="flex-direction: column;">
+                                    <div>
+                                        <h3 class="uk-card-title uk-text-capitalize uk-text-break text-light uk-text-center">{{SelectedProduct.name}}</h3>
                                     </div>
-                                    <div class="uk-flex uk-flex-middle uk-height-1-1">
-                                        <div class="border rounded uk-text-break uk-width-expand">
-                                            <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small">{{SelectedProduct.description}}</p>
-                                        </div>
+                                    <div>
+                                        <h4 class="text-light">{{SelectedProduct.price | currency:'ARS':'$'}}</h4>
+                                    </div>
+                                </div>
+                                <div class="uk-flex uk-flex-middle uk-height-1-1" *ngIf="!emptyDesc">
+                                    <div class="border rounded uk-text-break uk-width-expand">
+                                        <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small">{{SelectedProduct.description}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer uk-padding-remove-bottom">
-                        <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-dismiss="modal">Cerrar</button>
-                    </div>
+                </div>
+                <div class="modal-footer uk-padding-remove-bottom">
+                    <button type="button" class="uk-button uk-button-danger uk-width-1-1" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
+    </div>
