@@ -1,28 +1,37 @@
-<footer class="uk-margin-top">
-    <div class="uk-container-expand uk-padding-remove">
-        <div class="uk-text-center uk-grid-collapse uk-grid-match" uk-grid>
+<footer>
+    <div class="uk-container-expand">
+        <div *ngFor="let contact of contacts">
+            <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center bg-danger footer_height uk-flex uk-flex-middle" uk-grid>
+                <div class="hover_link"><a class="uk-text-decoration-none text-light">+{{contact.pnumber}}</a></div>
 
-            <div class="uk-width-expand@m footer_height">
-                <div class="uk-card bg-danger uk-card-body uk-padding-remove uk-flex uk-flex-center uk-flex-middle">
-                    <div class="uk-flex uk-flex-around uk-width-1-1 uk-padding-small uk-padding-remove text-light" uk-grid style="margin: none">
-                        <div class="uk-width-1-6">
-                            <p class="uk-text-lead text-light uk-text-default">Links útiles:</p>
-                        </div>
-                        <div class="hover_link"><a routerLink="home" class="uk-text-decoration-none text-light">Inicio</a></div>
-                        <div class="hover_link"><a routerLink="home" class="uk-text-decoration-none text-light">Preguntas Frecuentes</a></div>
-                        <div class="hover_link"><a routerLink="home" class="uk-text-decoration-none text-light">Productos</a></div>
-                    </div>
+                <div class="hover_link"><a class="uk-text-decoration-none text-light">Dir: {{contact.address}}</a></div>
+
+                <div class="hover_link"><a href="{{contact.instagram}}" class="uk-text-decoration-none text-light">Instagram</a>
                 </div>
+
+                <div class="hover_link"><a href="{{contact.mercadoLibre}}" class="uk-text-decoration-none text-light">MercadoLibre</a></div>
+
+                <div class="hover_link"><a href="{{contact.facebook}}" style="overflow: hidden" class="uk-text-decoration-none text-light">Facebook</a></div>
+
             </div>
-
-            <div class="uk-divider-vertical uk-divider-icon footer_height"></div>
-
-            <div class="uk-width-1-4@m footer_height">
-                <div class="uk-card bg-danger uk-card-body uk-padding-remove uk-flex uk-flex-center uk-flex-middle" style="--bs-bg-opacity: .75;">
-                    <p class="uk-text-small">Hecho por <a class="uk-text-lead uk-button-link uk-text-capitalize uk-text-decoration-none uk-text-small" href="https://www.twitter.com/GianGNGKS"> Gianfranco Gallucci</a>, CET 30 - 2021.</p>
-                </div>
+        </div>
+    </div>
+    <div class="uk-container-expand">
+        <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center bg-danger footer_height uk-flex uk-flex-middle" uk-grid>
+            <div>
+                <div class="hover_link"><a routerLink="home" class="uk-text-decoration-none text-light">Inicio</a></div>
             </div>
-
+            <div>
+                <div class="hover_link"><a routerLink="faq" class="uk-text-decoration-none text-light">Preguntas Frecuentes</a></div>
+            </div>
+            <div>
+                <div class="hover_link"><a routerLink="product" class="uk-text-decoration-none text-light">Productos</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-container-expand" *ngFor="let contact of contacts">
+        <div class="uk-card bg-danger uk-card-body uk-padding-remove uk-flex uk-flex-center uk-flex-middle uk-width-1-1 lh-lg" style="--bs-bg-opacity: .85;">
+            <p class="uk-text-small lh-lg">De: {{contact.negocioName}} Hecho por <a class="uk-text-lead uk-button-link uk-text-capitalize uk-text-decoration-none uk-text-small" href="https://www.twitter.com/GianGNGKS"> Gianfranco Gallucci</a>, CET 30 - 2021.</p>
         </div>
     </div>
 </footer>

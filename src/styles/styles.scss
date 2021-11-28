@@ -6,6 +6,8 @@
 @import "variables-theme.scss";
 @import "mixins-theme.scss";
 @import "uikit-theme.scss";
+//ToastR
+@import '~ngx-toastr/toastr';
 //HOVERS
 .hover_link {
     vertical-align: middle;
@@ -73,12 +75,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #f0506e;
+    background-color: #242327;
     transition: background-color 2s;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: #ee395b;
+    background-color: #413f46;
 }
 
 // ALTURAS CUSTOM 
@@ -108,4 +110,8 @@
 // IMG FILL 
 .imgfill {
     object-fit: scale-down;
+}
+
+.rainbow {
+    text-shadow: -4px 4px #ef3550, -8px 8px #e1e44b, -12px 12px #60c257, -16px 16px #2196f3, -20px 20px #5c26da;
 }

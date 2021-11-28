@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactService } from 'src/app/services/contact.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -10,14 +11,14 @@ export class HomeComponent implements OnInit {
 
   products!: any[]
 
-
   constructor(private $db:FirestoreService) {
-    this.$db.getProductos().subscribe((resp => {
+    this.$db.getProductoCarousel().subscribe((resp => {
         this.products = resp;
-      }))  
+      }))
     }
 
   ngOnInit(): void {
   }
+
 
 }

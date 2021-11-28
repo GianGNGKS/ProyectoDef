@@ -1,19 +1,19 @@
-<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 500">
     <div class="uk-text-center uk-light title_parent">
-        <h2 class="title_child uk-padding rounded fs-1 bg-dark shadow-lg font-monospace uk-text-bold" style="--bs-bg-opacity: .4">
-            Bienvenido a (variable)
+        <h2 class="title_child uk-padding rounded fs-1 bg-dark shadow-lg font-monospace uk-text-bold rainbow" style="--bs-bg-opacity: .4;pointer-events: none;" uk-scrollspy="cls: uk-animation-slide-left;">
+            Bienvenido a {{contacts[0].negocioName}}
         </h2>
 
     </div>
-    <ul class="uk-slideshow-items">
-        <li *ngFor="let picture of pictures">
-            <div class="uk-position-cover uk-animation-kenburns uk-transform-origin-center">
-                <img [src]="picture.img" alt="" uk-cover> </div>
+    <ul class=" uk-slideshow-items ">
+        <li *ngFor="let picture of pictures ">
+            <div class="uk-position-cover uk-animation-kenburns uk-transform-origin-center ">
+                <img [src]="picture.img " alt=" " uk-cover> </div>
 
-            <div class="uk-position-center uk-position-small uk-text-center uk-light">
+            <div class="uk-position-center uk-position-small uk-text-center uk-light ">
             </div>
         </li>
     </ul>
-    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover " href="# " uk-slidenav-previous uk-slideshow-item="previous "></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover " href="# " uk-slidenav-next uk-slideshow-item="next "></a>
 </div>

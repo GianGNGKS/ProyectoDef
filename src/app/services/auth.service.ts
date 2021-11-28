@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   moveToAdmin(){
-    this.router.navigate(['/admin'])
+    this.router.navigate(['/test'])
   }
 
   sessionCheck(){

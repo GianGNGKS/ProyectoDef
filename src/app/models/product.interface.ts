@@ -3,8 +3,9 @@ export interface IdProducto extends producto {
 }
 
 export interface producto {
-    name: string,
-    price: number,
-    img: string,
-    description: string
+    name?: string,
+    price?: number,
+    img?: string,
+    description?: string, 
+    fav? : boolean
 }

@@ -1,10 +1,27 @@
-<div uk-height-viewport="expand: true" class="bg-info">
+<div uk-height-viewport="expand: true" class="bg-white">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-info" style="--bs-bg-opacity: .5; margin-bottom: -1.3em" id="s_productos">
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-white" style="--bs-bg-opacity: .5; margin-bottom: 0" id="s_productos">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center uk-background-secondary text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Panel de administración
+                </h1>
+            </div>
+            <div class="uk-container uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-flex uk-flex-center">
+                <button class="uk-button uk-button-secondary uk-padding-remove rounded border uk-width-1-2 hover_link" *ngIf="!user" (click)="logOut()">
+                    Cerrar sesión
+                </button>
+            </div>
+        </div>
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-info" style="--bs-bg-opacity: .5; margin-bottom: 0" id="s_productos">
             <div class="uk-container uk-padding uk-padding-remove-horizontal">
                 <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center uk-background-primary text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
                     Productos
                 </h1>
+            </div>
+            <div class="uk-container uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-flex uk-flex-center">
+                <button class="uk-button uk-button-primary uk-padding-remove rounded border uk-width-1-2 hover_link" data-bs-target="#modalPRODUCTOSagregar" data-bs-toggle="modal">
+                    Agregar nuevo producto
+                </button>
             </div>
             <div class="uk-container">
                 <table class="uk-table uk-table-divider uk-table-middle bg-primary text-light rounded border border-white" style="--bs-bg-opacity: .5">
@@ -33,10 +50,15 @@
                             </td>
                             <td>
                                 <div class="uk-flex uk-flex-center uk-flex-middle">
-                                    <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)"><span
-                                        uk-icon="icon: pencil; ratio: 1.2 " class="text-light "></span></button>
-                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) "><span
-                                        uk-icon="icon: close; ratio: 1.2 " class="text-light "></span></button>
+                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="favProduct(producto.id, producto.fav!)">
+                                        <span uk-icon="icon: bookmark; ratio: 1.5"  class="uk-text-warning"></span>
+                                    </button>
+                                    <button class="uk-button uk-button-link uk-padding-remove" data-bs-target="#modalPRODUCTOSeditar" data-bs-toggle="modal" (click)="selectProducto(producto.id)">
+                                        <span uk-icon="icon: pencil; ratio: 1.5" class="text-light"></span>
+                                    </button>
+                                    <button class="uk-button uk-button-link uk-padding-remove" (click)="deletePRODUCTO(producto.id) ">
+                                        <span uk-icon="icon: close; ratio: 1.5" class="text-danger"></span>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -44,7 +66,7 @@
                 </table>
             </div>
         </div>
-        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-success" style="--bs-bg-opacity: .65;" id="s_preguntas">
+        <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap bg-success" style="--bs-bg-opacity: .75;" id="s_preguntas">
             <div class="uk-container uk-padding uk-padding-remove-horizontal">
                 <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-success  text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
                     Preguntas
@@ -55,7 +77,7 @@
                     <thead>
                         <tr>
                             <th class="uk-width-1-3 uk-text-middle uk-text-center text-light uk-table-shrink">Título</th>
-                            <th class="uk-width-1-3 uk-text-middle uk-text-center text-light">Descripción</th>
+                            <th class="uk-width-small uk-text-middle uk-text-center text-light">Descripción</th>
                             <th class="uk-width-1-5 uk-text-middle uk-text-center text-light">Modificar</th>
                         </tr>
                     </thead>
@@ -66,16 +88,11 @@
                                     <p class="text-light text-center">{{pregunta.title}}</p>
                                 </div>
                             </td>
-                            <td class="text-dark uk-text-break">
-                                <div class="uk-flex uk-flex-center uk-flex-middle">
-                                    <p class="text-light">{{pregunta.description}}</p>
-                                </div>
+                            <td class="text-dark uk-text-truncate uk-light"><span class="text-light">{{pregunta.description}}</span>
                             </td>
                             <td class="text-dark uk-text-nowrap">
                                 <div class="uk-flex uk-flex-center uk-flex-middle">
-                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.2"
-                                        class="text-light"></span></button>
-                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" (click)="deleteFAQ(pregunta.id)"><span uk-icon="icon: close; ratio: 1.2"
+                                    <button class="uk-button uk-button-link uk-padding-small uk-padding-remove-bottom" data-bs-target="#modalFAQeditar" data-bs-toggle="modal" (click)="selectPregunta(pregunta.id)"><span uk-icon="icon: pencil; ratio: 1.5"
                                         class="text-light"></span></button>
                                 </div>
                             </td>
@@ -91,6 +108,9 @@
                 </h1>
             </div>
             <div class="uk-container bg-warning text-light rounded border border-white uk-padding-remove" style="--bs-bg-opacity: .6">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-dark text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Carousel de imágenes
+                </h1>
                 <div class="uk-child-width-1-4 uk-grid-match uk-text-center uk-padding uk-flex uk-flex-center uk-flex-middle" uk-grid>
                     <div>
                         <div class="uk-card bg-light uk-card-body img_pic rounded" style="--bs-bg-opacity: .2; height: 400px">
@@ -143,6 +163,46 @@
                 </div>
             </div>
         </div>
+        <div class="uk-section uk-padding-large uk-padding-horizontal-remove uk-section-overlap bg-secondary" style="--bs-bg-opacity: .65" id="s_contacto">
+            <div class="uk-container uk-padding uk-padding-remove-horizontal">
+                <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-secondary  text-light rounded border border-white font-monospace" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
+                    Contacto
+                </h1>
+            </div>
+            <div class="uk-container bg-secondary text-light rounded border border-white uk-padding-remove uk-flex uk-flex-center" style="--bs-bg-opacity: .6">
+                <div class="uk-width-1-2 uk-flex-center">
+                    <form action="" [formGroup]="formularioContact" (ngSubmit)="updateContactoF(contactos[0].id)">
+                        <div class="uk-width-4-6">
+                            <legend class="uk-legend text-dark uk-text-large">Nombre de la empresa</legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="text" formControlName="negocioName" placeholder="Nombre del producto">
+                            </div>
+                            <legend class="uk-legend text-dark uk-text-large">Número de Teléfono</legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="number" formControlName="pnumber" placeholder="Nombre del producto">
+                            </div>
+                            <legend class="uk-legend text-dark uk-text-large">Dirección</legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="text" formControlName="address" placeholder="Nombre del producto">
+                            </div>
+                            <legend class="uk-legend text-dark uk-text-large">URL Instagram</legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="text" formControlName="instagram" placeholder="Nombre del producto">
+                            </div>
+                            <legend class="uk-legend text-dark uk-text-large">URL Facebook</legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="text" formControlName="facebook" placeholder="Nombre del producto">
+                            </div>
+                            <legend class="uk-legend text-dark uk-text-large">URL<span class="text-warning"> Tienda MercadoLibre</span></legend>
+                            <div class="uk-margin">
+                                <input class="uk-input" type="text" formControlName="mercadoLibre" placeholder="Nombre del producto">
+                            </div>
+                        </div>
+                        <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -152,3 +212,139 @@
     <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_inicio" uk-scroll>Inicio</a> </div>
     <div class="uk-width-1-1 menu_li"> <a class="uk-button uk-button-danger rounded uk-width-expand uk-text-center" href="#s_contacto" uk-scroll>Contacto</a> </div>
 </div>
+
+<!-- MODAL PRODUCTO AGREGAR -->
+<div class="modal fade" id="modalPRODUCTOSagregar" tabindex="-1" aria-labelledby="productoLabelAgregar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <!-- MODAL HEADER -->
+            <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="productoLabelAgregar">Agregar nuevo producto</h3>
+            </div>
+            <!-- MODAL CARDS POR OBJETO-->
+            <div class="modal-body">
+                <form action="" [formGroup]="formularioProducto" (ngSubmit)="aceptarPRODUCTO()">
+                    <fieldset>
+                        <div class="uk-grid uk-grid-column-remove uk-grid-divider" uk-grid>
+                            <div class="uk-width-expand@m">
+                                <legend class="uk-legend text-dark uk-text-large">Nombre</legend>
+                                <div class="uk-margin">
+                                    <input class="uk-input" id="title" type="text" formControlName="name" placeholder="Nombre del producto">
+                                </div>
+                                <legend class="uk-legend text-dark">Precio</legend>
+                                <div class="uk-margin">
+                                    <input class="uk-input" id="title" type="number" formControlName="price" placeholder="">
+                                </div>
+                            </div>
+                            <div class="uk-width-1-3@m bg-dangeruk-padding-remove">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <img src="{{imgurlproducto}}" alt="" class="rounded uk-preserve-width imgfill" style=" height:175px; width: 175px;">
+                                </div>
+                                <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal">
+                                    <div uk-form-custom>
+                                        <input type="file" (change)="selectIMGP($event)" [disabled]="uploadState">
+                                        <button class="uk-button uk-button-danger uk-width-1-1" type="button" tabindex="-1" [disabled]="uploadState">Seleccionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hr_separator">
+                        <div>
+                            <legend class="uk-legend text-dark">Descripción del producto</legend>
+                            <div class="uk-margin">
+                                <textarea class="uk-textarea description" rows="10" placeholder="Descripción del producto..." formControlName="description" id="description" maxlength="2000" style="white-space: pre-wrap"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7" data-bs-dismiss="modal" [disabled]="uploadState">Aceptar</button>
+                    </fieldset>
+                </form>
+                <!-- VUELVE A MODAL GENERAL -->
+                <button data-bs-dismiss="modal" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL PRODUCTO EDITAR -->
+<div class="modal fade" id="modalPRODUCTOSeditar" tabindex="-1" aria-labelledby="productoLabelEditar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <!-- MODAL HEADER -->
+            <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="productoLabelEditar">Editar producto</h3>
+            </div>
+            <!-- MODAL CARDS POR OBJETO-->
+            <div class="modal-body">
+                <form action="" [formGroup]="formularioProductoedit" (ngSubmit)="updatePRODUCTO()">
+                    <fieldset>
+                        <div class="uk-grid uk-grid-column-remove uk-grid-divider" uk-grid>
+                            <div class="uk-width-expand@m">
+                                <legend class="uk-legend text-dark uk-text-large">Nombre</legend>
+                                <div class="uk-margin">
+                                    <input class="uk-input" id="title" type="text" formControlName="name" placeholder="Nombre del producto">
+                                </div>
+                                <legend class="uk-legend text-dark">Precio</legend>
+                                <div class="uk-margin">
+                                    <input class="uk-input" id="title" type="number" formControlName="price" placeholder="">
+                                </div>
+                            </div>
+                            <div class="uk-width-1-3@m uk-padding-remove">
+                                <div class="uk-flex uk-flex-center uk-flex-middle">
+                                    <img [src]="img64" alt="" class="rounded uk-preserve-width" style="object-fit: cover; height:175px; width: 175px;">
+                                </div>
+                                <div class="uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-padding-remove-horizontal" uk-form-custom>
+                                    <input type="file" (change)="selectIMGP($event)" [disabled]="uploadState">
+                                    <button class="uk-button uk-button-danger uk-width-1-2" type="button" tabindex="-1" [disabled]="uploadState">Seleccionar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <legend class="uk-legend text-dark">Descripción del producto</legend>
+                            <div class="uk-margin">
+                                <textarea class="uk-textarea description" rows="10" placeholder="Descripción del producto..." formControlName="description" maxlength="2000"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                    </fieldset>
+                </form>
+                <!-- VUELVE A MODAL GENERAL -->
+                <button data-bs-dismiss="modal" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FAQ EDITAR -->
+<div class="modal fade" id="modalFAQeditar" tabindex="-1" aria-labelledby="faqLabeleditar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <!-- MODAL HEADER -->
+            <div class="modal-header bg-danger" style="--bs-bg-opacity: .7; letter-spacing: 2px">
+                <h3 class="modal-title uk-text-bold uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="faqLabeleditar">Editar pregunta</h3>
+            </div>
+            <!-- MODAL OBJETO SELECCIONADO POR ID-->
+            <div class="modal-body">
+                <form action="" [formGroup]="formularioFAQedit" (ngSubmit)="updateFAQ()">
+                    <fieldset>
+                        <legend class="uk-legend text-dark">Título</legend>
+                        <div class="uk-margin">
+                            <input class="uk-input" id="title" type="text" formControlName="title" placeholder="">
+                        </div>
+                        <legend class="uk-legend text-dark">Descripción</legend>
+                        <div class="uk-margin">
+                            <textarea class="uk-textarea description" name="faqDescription" rows="10" placeholder="Descripción de la pregunta..." formControlName="description" id="description" maxlength="500"></textarea>
+                        </div>
+                        <div class="uk-divider-icon"></div>
+                        <button data-bs-dismiss="modal" class="uk-button btn-danger uk-width-1-1 uk-margin-small-bottom" style="--bs-bg-opacity: .7">Aceptar</button>
+                    </fieldset>
+                </form>
+                <!-- VUELVE A MODAL GENERAL -->
+                <button data-bs-toggle="modal" data-bs-target="#modalFAQ" class="uk-button uk-button-danger uk-width-1-1 ">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODALES DE FAQ -->

@@ -1,16 +1,16 @@
 .menu_side {
     position: fixed;
     left: 5px;
-    top: 49%;
+    top: 40%;
     width: 125px;
     background-color: red;
     height: fit-content;
-    opacity: .4;
+    opacity: .55;
     display: flex;
     justify-content: space-between;
     gap: 10px;
     flex-direction: column;
-    transition: .5s ease all;
+    transition: .35s ease all;
 }
 
 .uk-button {

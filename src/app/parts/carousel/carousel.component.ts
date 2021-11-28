@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselService } from 'src/app/services/carousel.service';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-carousel',
@@ -10,9 +11,14 @@ export class CarouselComponent implements OnInit {
 
   pictures!: any[];
 
-  constructor(private $dbpi:CarouselService) {
+  contacts!: any[];
+
+  constructor(private $dbpi:CarouselService, private $dbc:ContactService) {
     this.$dbpi.getPictures().subscribe((resp => {
       this.pictures = resp;
+    }))
+    this.$dbc.getContactos().subscribe((resp => {
+      this.contacts = resp;
     }))
   }
 

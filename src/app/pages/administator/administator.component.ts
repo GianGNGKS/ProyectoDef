@@ -166,7 +166,7 @@ export class AdministatorComponent implements OnInit {
     this.$dbp.updateProducto(this.idproducto, producto)
   }
 
-  async selectIMG(event: any) {
+  async selectIMGP(event: any) {
     this.uploadState = true
     const fileProd = event.target.files[0]
     let imgnamep = fileProd.name

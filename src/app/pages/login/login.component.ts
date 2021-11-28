@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     this.authSession.login(this.inputSession.value.username, this.inputSession.value.password)
-      this.authSession.moveToAdmin()
+    this.router.navigate(['/test']);
   }
-
 }

@@ -27,6 +27,9 @@ import { TestComponent } from './parts/test/test.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AdministatorComponent } from './pages/administator/administator.component';
 
+
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,11 @@ import { AdministatorComponent } from './pages/administator/administator.compone
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      countDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
