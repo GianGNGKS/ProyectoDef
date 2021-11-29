@@ -10,9 +10,11 @@ import { FaqService } from 'src/app/services/faq.service';
 })
 export class FaqComponent implements OnInit {
 
+  //arreglo de preguntas
   preguntas!:any[]
 
   constructor(private $db:FaqService) {
+    //suscripcion al servicio de faq
     this.$db.getPreguntas().subscribe((resp => {
       this.preguntas = resp;
     }))

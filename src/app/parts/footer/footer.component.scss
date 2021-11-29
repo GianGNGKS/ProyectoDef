@@ -1,7 +1,9 @@
+//altura de footer
 .footer_height {
     height: 3em;
 }
 
+//links de footer
 a {
     color: #fff;
     transition: .3s;
@@ -10,21 +12,25 @@ a {
     letter-spacing: 2px;
 }
 
+//número
 .hover_link_w:hover {
     color: rgb(60, 220, 60);
     -webkit-text-stroke-color: rgb(60, 220, 60);
 }
 
+//instagram
 .hover_link_i:hover {
     color: rgb(250, 130, 250);
     -webkit-text-stroke-color: rgb(250, 130, 250);
 }
 
+//facebook
 .hover_link_f:hover {
     color: rgb(60, 100, 210);
     -webkit-text-stroke-color: rgb(60, 100, 210);
 }
 
+//mercadolibre
 .hover_link_m:hover {
     color: rgb(230, 240, 90);
     -webkit-text-stroke-color: rgb(230, 240, 90);

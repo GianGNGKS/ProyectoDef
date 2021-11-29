@@ -5,6 +5,7 @@
         </div>
     </div>
     <div class="uk-container-expand">
+        <!-- llama a contacts para mostrar el primer objeto con sus valores -->
         <div *ngFor="let contact of contacts">
             <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center bg-danger footer_height uk-flex uk-flex-middle" uk-grid style="--bs-bg-opacity: .95;">
                 <div *ngIf="contact.pnumber !== ''"><a class="uk-text-decoration-none font-monospace hover_link_w">+{{contact.pnumber}}</a></div>
@@ -23,6 +24,8 @@
             </div>
         </div>
     </div>
+    <!-- llama a contacts para mostrar el primer objeto con el valor de nombre -->
+
     <div class="uk-container-expand" *ngFor="let contact of contacts">
         <div class="uk-card bg-danger uk-card-body uk-padding-remove uk-flex uk-flex-center uk-flex-middle uk-width-1-1 lh-lg" style="--bs-bg-opacity: .65;">
             <p class="uk-text-small lh-lg font-monospace ">De: {{contact.negocioName}} Hecho por <a class="uk-text-lead uk-button-link uk-text-capitalize uk-text-decoration-none uk-text-small" href="https://www.twitter.com/GianGNGKS"> Gianfranco Gallucci</a>, CET 30 - 2021.</p>

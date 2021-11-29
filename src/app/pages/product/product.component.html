@@ -1,5 +1,6 @@
 <div uk-height-viewport="expand: true" class="bg-dark" style="--bs-bg-opacity: .25;">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <!-- sección de uikit para background -->
         <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap" style="--bs-bg-opacity: .85;">
             <div class="uk-container uk-padding uk-padding-remove-horizontal">
                 <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-primary text-light rounded border border-white font-monospace rainbow" style="--bs-bg-opacity: .85; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
@@ -7,6 +8,7 @@
                 </h1>
             </div>
             <div class="uk-divider-icon" uk-scrollspy="cls: uk-animation-slide-bottom;"></div>
+            <!-- container con cards dinámicas para productos -->
             <div class="uk-container">
                 <div class="">
                     <div class="uk-child-width-1-3@s uk-child-width-1-4@m uk-text-center uk-grid-match " uk-grid>
@@ -22,7 +24,7 @@
                                     </div>
                                 </div>
                                 <div class="uk-card-footer uk-height-small">
-                                    <button type="button" class="uk-button uk-button-text rounded hover_link text-white" data-toggle="modal" data-target="#exampleModal" (click)="SeleccionarProducto(product)">
+                                    <button type="button" class="uk-button uk-button-text rounded hover_link text-white" data-toggle="modal" data-target="#modaldetails" (click)="SeleccionarProducto(product)">
                                         Ver más
                                         </button>
                                 </div>
@@ -38,14 +40,16 @@
 
 
 <!-- MODAL PRODUCTO SELECCIONADO POR ID -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="modalActive">
+<!-- estructura if para deshabilitar -->
+<div class="modal fade" id="modaldetails" tabindex="-1" role="dialog" aria-labelledby="modaldetailsL" aria-hidden="true" *ngIf="modalActive">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark" style="--bs-bg-opacity: .7; letter-spacing: 2px">
-                <h4 class="modal-title uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="exampleModalLabel">Más información</h4>
+                <h4 class="modal-title uk-text-capitalize uk-text-middle uk-text-center text-light uk-width-1-1" id="modaldetailsL">Más información</h4>
             </div>
             <div class="modal-body uk-padding-remove-top bg-dark">
                 <div>
+                    <!-- card para mostrar detalles de producto -->
                     <div class="uk-card-body uk-grid-match uk-padding-large uk-padding-remove-horizontal uk-padding-remove-top" uk-grid>
                         <div class="uk-width-1-2 uk-flex uk-flex-center uk-flex-middle uk-padding-small-bottom uk-margin-remove">
                             <img [src]="SelectedProduct.img" alt="{{ SelectedProduct.name }}" class="rounded uk-preserve-width hover_product imgfill" style="height:350px;">
@@ -61,8 +65,9 @@
                                     </div>
                                 </div>
                                 <div class="uk-flex uk-flex-middle uk-height-1-1" *ngIf="!emptyDesc">
+                                    <!-- estructura if para no mostrar description si no hay -->
                                     <div class="border rounded uk-text-break uk-width-expand">
-                                        <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small">{{SelectedProduct.description}}</p>
+                                        <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small whitespace">{{SelectedProduct.description}}</p>
                                     </div>
                                 </div>
                             </div>

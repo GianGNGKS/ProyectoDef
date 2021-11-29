@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdministatorComponent } from './pages/administator/administator.component';
+
+
+//partes
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+
+//paginas
 import { FaqComponent } from './pages/faq/faq.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductComponent } from './pages/product/product.component';
-import { ModalFaqComponent } from './parts/modal-faq/modal-faq.component';
-import { TestComponent } from './parts/test/test.component';
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['home']);
 
@@ -22,10 +25,7 @@ const routes: Routes = [
     path: 'faq', component: FaqComponent
   },
   {
-    path: 'modalfaq', component: ModalFaqComponent
-  },
-  {
-    path: 'admin', component: AdministatorComponent, 
+    path: 'admin', component: AdminComponent, 
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
@@ -37,8 +37,6 @@ const routes: Routes = [
   },
   {
     path: '*', redirectTo: 'home', pathMatch: 'full'
-  }, {
-    path: 'test', component: TestComponent
   }
 ];
 

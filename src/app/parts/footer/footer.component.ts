@@ -8,10 +8,11 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class FooterComponent implements OnInit {
 
-
+  //arreglo de contactos
   contacts!: any[]
 
   constructor(private $db: ContactService) {
+    //suscripción al servicio de contacto
     this.$db.getContactos().subscribe((resp => {
       this.contacts = resp;
 

@@ -9,9 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  //variable para afirmar login de usuario
   user!:any
 
   constructor(private auth: AuthService, private router: Router) { 
+    //suscripción al servicio de auth
     this.auth.sessionCheck().subscribe(resp => {
       this.user = resp
     })
@@ -21,6 +23,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logIn(){
+    //si usuario no existe, navega a login
     if(!this.user){
       this.router.navigate(['/login'])
     }

@@ -15,11 +15,15 @@ import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/c
 })
 export class CarouselService {
 
+  //colleción de carousel
   private pictureCollection: AngularFirestoreCollection<Ipicture>
   pictures: Observable<IdPicture[]>
+
+  //referencia
   refPic: AngularFireStorageReference
 
   constructor(private fst: AngularFirestore, private fss: AngularFireStorage) {
+    //referencia a carpeta de fotos en firebase
     this.refPic = this.fss.ref('carouselImg')
 
     this.pictureCollection = this.fst.collection<IdPicture>('picture')
@@ -35,7 +39,7 @@ export class CarouselService {
     )
   }
 
-
+  //obtener objeto de carousel por id
   getPicture(id: string) {
     return this.pictureCollection.doc(id).snapshotChanges().pipe(
       map(a => {
@@ -45,10 +49,12 @@ export class CarouselService {
     )
   }
 
+  //obtener fotos
   getPictures() {
     return this.pictures
   }
 
+  //actualizar objeto de carousel por id
   updatePicture(id: string, data: Ipicture) {
     return this.pictureCollection.doc(id).update(data)
   }
@@ -59,6 +65,7 @@ export class CarouselService {
     return this.fss.upload(`carouselImg/${name}`, data);
   }
 
+  //referencia
   returnRef(name:string){
     return this.refPic.child(name)
   }

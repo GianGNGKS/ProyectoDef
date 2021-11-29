@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   products!: any[]
 
   constructor(private $db:FirestoreService) {
+    //suscripción a servicio de productos pero utilizando método de destacados
     this.$db.getProductoCarousel().subscribe((resp => {
         this.products = resp;
       }))

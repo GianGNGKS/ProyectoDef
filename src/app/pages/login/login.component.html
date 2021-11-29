@@ -1,11 +1,13 @@
 <div uk-height-viewport="expand: true" class="bg-dark" style="--bs-bg-opacity: .25;">
     <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+        <!-- sección de uikit para background -->
         <div class="uk-section uk-padding-large uk-padding-remove-horizontal uk-section-overlap" style="--bs-bg-opacity: .85;">
             <div class="uk-container uk-padding uk-padding-remove-horizontal">
                 <h1 class="uk-padding-small uk-text-bold uk-text-capitalize uk-text-middle uk-text-center bg-danger text-light rounded border border-white font-monospace rainbow" style="--bs-bg-opacity: .9; letter-spacing: 2px" uk-scrollspy="cls: uk-animation-slide-right;">
                     Iniciar sesión
                 </h1>
             </div>
+            <!-- container con formulario -->
             <div class="uk-container uk-padding-large uk-padding-remove-vertical">
                 <form action="" [formGroup]="inputSession" (ngSubmit)="logIn()">
                     <fieldset>

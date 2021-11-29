@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'; 
+import { Router } from '@angular/router';
 
 //auth
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+
 
 
 @Injectable({
@@ -11,25 +12,31 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  user!:Observable<any>
-  
-  constructor(private auth:AngularFireAuth, private router:Router) {
+  //variable de usuario
+  user!: Observable<any>
+
+  constructor(private auth: AngularFireAuth, private router: Router) {
+    //suscripción al servicio de auth
     this.user = auth.authState
   }
 
-  login(username:string, password:string){
+  //iniciar sesión con username(correo) y password
+  login(username: string, password: string) {
     return this.auth.signInWithEmailAndPassword(username, password);
   }
 
-  logout(){
+  //cerrar sesión
+  logout() {
     return this.auth.signOut();
   }
 
-  moveToAdmin(){
+  //llama a router para ir a admin
+  moveToAdmin() {
     this.router.navigate(['/test'])
   }
 
-  sessionCheck(){
+  //checkea si hay usuario
+  sessionCheck() {
     return this.user
   }
 

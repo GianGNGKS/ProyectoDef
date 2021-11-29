@@ -12,24 +12,29 @@ import { contactoID, IContacto } from '../models/contacto.interface';
 })
 export class ContactService {
 
+  //colección de contactos
   private contactoCollection: AngularFirestoreCollection<any>
   contactos: Observable<contactoID[]>
 
   constructor(private fst: AngularFirestore) {
+
     this.contactoCollection = this.fst.collection<contactoID[]>('contacto')
     this.contactos = this.contactoCollection.snapshotChanges().pipe(
       map(a => a.map(a => {
-        //mapeado de producto
+        //mapeado de contacto
         const id = a.payload.doc.id;
         const data = a.payload.doc.data() as IContacto;
         return { id, ...data }
       }))
     )
   }
+
+  //obtener contactos
   getContactos() {
     return this.contactos
   }
 
+  //obtener contacto individual
   getContacto(id: string) {
     return this.contactoCollection.doc(id).snapshotChanges().pipe(
       map(a => {
@@ -40,6 +45,7 @@ export class ContactService {
     )
   }
 
+  //actualizar contacto
   updateContacto(id: string, data: IContacto) {
     return this.contactoCollection.doc(id).update(data)
   }

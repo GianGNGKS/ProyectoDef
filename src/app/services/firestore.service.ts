@@ -20,9 +20,12 @@ export class FirestoreService {
   //colección de productos
   private productCollection: AngularFirestoreCollection<any>
   productos: Observable<IdProducto[]>
+  
+  //referencia 
   refProd: AngularFireStorageReference
 
   constructor(private fst: AngularFirestore, private fss: AngularFireStorage) {
+    //referencia a carpeta de imágenes en firebase
     this.refProd = this.fss.ref('productosImg')
 
     this.productCollection = this.fst.collection<IdProducto>('product')
@@ -63,7 +66,6 @@ export class FirestoreService {
       map(a => a.map(a=>{
         const id = a.payload.doc.id;
         const data = a.payload.doc.data() as producto;
-
         return {id, ...data}
       }))
     )
@@ -86,6 +88,7 @@ export class FirestoreService {
     return this.fss.upload(`productosImg/${name}`, data);
   }
 
+  //obtener refernecia
   returnRef(name: string) {
     return this.refProd.child(name)
   }

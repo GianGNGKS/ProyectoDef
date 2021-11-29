@@ -9,11 +9,14 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class CarouselComponent implements OnInit {
 
+
+  //arreglos de collecciones fotos y contactos
   pictures!: any[];
 
   contacts!: any[];
 
   constructor(private $dbpi:CarouselService, private $dbc:ContactService) {
+    //suscribe al servicio de fotos de carousel y contacts (para nombre de empresa)
     this.$dbpi.getPictures().subscribe((resp => {
       this.pictures = resp;
     }))

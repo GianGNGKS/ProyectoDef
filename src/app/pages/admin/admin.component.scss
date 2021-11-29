@@ -1,7 +1,40 @@
-.description {
-    resize: none;
+//menú lateral
+.menu_side {
+    position: fixed;
+    left: 5px;
+    top: 40%;
+    width: 150px;
+    background-color: red;
+    height: fit-content;
+    opacity: .55;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-direction: column;
+    transition: .35s ease all;
 }
 
-.hr_separator {
-    border: 1px solid #bbb;
+.uk-button {
+    padding: 0px
+}
+
+.menu_side:hover {
+    opacity: 1;
+    left: 10px;
+    width: 200px
+}
+
+.padding-xl {
+    padding: 100px;
+}
+
+.btn_inicio {
+    width: 20em
+}
+
+//flex para imagen de carousel
+.img_pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }

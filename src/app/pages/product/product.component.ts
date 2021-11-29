@@ -14,14 +14,17 @@ export class ProductComponent implements OnInit {
   SelectedProduct: any;
   emptyDesc!: boolean;
 
-  //modal
+  // modal
   modalActive!: boolean;
 
 
   constructor(private $db:FirestoreService) {
+    //suscripción al servicio de productos
   this.$db.getProductos().subscribe((resp => {
       this.products = resp;
     }))
+
+    //desabilita modal para ver detalles del producto
     this.modalActive = false    
   }
 

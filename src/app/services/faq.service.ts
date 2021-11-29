@@ -14,10 +14,12 @@ import { IdPregunta, pregunta } from '../models/faq.interface';
 })
 export class FaqService {
 
+  //colección de preguntas
   private preguntaCollection: AngularFirestoreCollection<pregunta>
   preguntas:Observable<IdPregunta[]>
 
   constructor(private fst:AngularFirestore) {
+    //suscripción a firebase
     this.preguntaCollection = this.fst.collection<IdPregunta>('pregunta')
     this.preguntas = this.preguntaCollection.snapshotChanges().pipe(
       map(a => a.map(a => {
@@ -32,11 +34,6 @@ export class FaqService {
     )
   }
 
-    //crea pregunta
-    createPregunta(data:pregunta){
-      return this.preguntaCollection.add(data)
-    }
-  
     //obtiene colección de preguntas
     getPreguntas(){
       return this.preguntas
@@ -58,10 +55,5 @@ export class FaqService {
     updatePregunta(id:string, data:pregunta){
       return this.preguntaCollection.doc(id).update(data)
     }
-    //borra pregunta por id
-    deletePregunta(id:string){
-      return this.preguntaCollection.doc(id).delete()
-    }
-
 }
 
