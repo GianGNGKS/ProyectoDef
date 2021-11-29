@@ -64,7 +64,7 @@
                                         <h4 class="text-light">{{SelectedProduct.price | currency:'ARS':'$'}}</h4>
                                     </div>
                                 </div>
-                                <div class="uk-flex uk-flex-middle uk-height-1-1" *ngIf="!emptyDesc">
+                                <div class="uk-flex uk-flex-middle uk-height-1-1" *ngIf="SelectedProduct.description !== ''">
                                     <!-- estructura if para no mostrar description si no hay -->
                                     <div class="border rounded uk-text-break uk-width-expand">
                                         <p class="text-muted uk-text-justify uk-text-break uk-text-middle uk-padding-small whitespace">{{SelectedProduct.description}}</p>

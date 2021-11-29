@@ -197,7 +197,6 @@ export class AdminComponent implements OnInit {
         description: this.formularioProductoedit.value.description
       }
       this.$dbp.updateProducto(this.idproducto, producto)
-
     } else {
       const producto: producto = {
         name: this.formularioProductoedit.value.name,
@@ -216,10 +215,10 @@ export class AdminComponent implements OnInit {
       description: '',
     })
     this.toast.info("Se ha actualizado el producto exitosamente.", "Producto actualizado", { positionClass: 'toast-bottom-right', closeButton: true })
+    } else {
+      this.toast.error("Los productos requieren de nombre y foto para ser válidos.", "Producto denegado", { positionClass: 'toast-bottom-right', closeButton: true })
     }
-    this.toast.error("Los productos requieren de nombre y foto para ser válidos.", "Producto denegado", { positionClass: 'toast-bottom-right', closeButton: true })
     
-
   }
 
   favProduct(id: string, fav: boolean) {
